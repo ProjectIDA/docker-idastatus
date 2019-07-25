@@ -1,0 +1,371 @@
+[
+  {
+    "model": "stations.station",
+    "pk": 1,
+    "fields": {
+      "code": "AAK",
+      "description": "Station AAK, Ala Archa, Kyrgyzstan",
+      "country_code": "KG"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 2,
+    "fields": {
+      "code": "ABPO",
+      "description": "Station ABPO, Ambohimpanompo, Madagascar",
+      "country_code": "MG"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 3,
+    "fields": {
+      "code": "ALE",
+      "description": "Station ALE, Alert, NU, Canada",
+      "country_code": "CA"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 4,
+    "fields": {
+      "code": "ARTI",
+      "description": "Station ARTI, Arti, Russia",
+      "country_code": "RU"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 5,
+    "fields": {
+      "code": "ASCN",
+      "description": "Station ASCN, Butt Crater, Ascension Island",
+      "country_code": "AC"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 6,
+    "fields": {
+      "code": "BFO",
+      "description": "Station BFO, Black Forest Observatory, Wolfach, Germany",
+      "country_code": "DE"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 7,
+    "fields": {
+      "code": "BORG",
+      "description": "Station BORG, Borgarfjordur, Asbjarnarstadir, Iceland",
+      "country_code": "IS"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 8,
+    "fields": {
+      "code": "BRVK",
+      "description": "Station BRVK, Borovoye, Kazakhstan",
+      "country_code": "KZ"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 9,
+    "fields": {
+      "code": "CMLA",
+      "description": "Station CMLA, Cha de Macela, Sao Miguel Island, Azores, Portugal",
+      "country_code": "PT"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 10,
+    "fields": {
+      "code": "COCO",
+      "description": "Station COCO, Cocos (Keeling) Islands, Australia",
+      "country_code": "AU"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 11,
+    "fields": {
+      "code": "DGAR",
+      "description": "Station DGAR, Diego Garcia, British Indian Ocean Territory",
+      "country_code": "IO"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 12,
+    "fields": {
+      "code": "EFI",
+      "description": "Station EFI, Mount Kent, East Falkland Islands",
+      "country_code": "FK"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 13,
+    "fields": {
+      "code": "ERM",
+      "description": "Station ERM, Erimo, Hokkaido, Japan",
+      "country_code": "JP"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 14,
+    "fields": {
+      "code": "ESK",
+      "description": "Station ESK, Eskdalemuir, Scotland",
+      "country_code": "GB"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 15,
+    "fields": {
+      "code": "FFC",
+      "description": "Station FFC, Flin Flon, Manitoba, Canada",
+      "country_code": "CA"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 16,
+    "fields": {
+      "code": "HOPE",
+      "description": "Station HOPE, Hope Point, South Georgia Island",
+      "country_code": "GS"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 17,
+    "fields": {
+      "code": "JTS",
+      "description": "Station JTS, Las Juntas de Abangares, Costa Rica",
+      "country_code": "CR"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 18,
+    "fields": {
+      "code": "KAPI",
+      "description": "Station KAPI, Kappang, South Sulawesi, Indonesia",
+      "country_code": "ID"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 19,
+    "fields": {
+      "code": "KDAK",
+      "description": "Station KDAK, Kodiak Island, Alaska, USA",
+      "country_code": "US"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 20,
+    "fields": {
+      "code": "KIV",
+      "description": "Station KIV, Kislovodsk, Russia",
+      "country_code": "RU"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 21,
+    "fields": {
+      "code": "KURK",
+      "description": "Station KURK, Kurchatav, Kazakhstan",
+      "country_code": "KZ"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 22,
+    "fields": {
+      "code": "KWJN",
+      "description": "Station KWJN, Kwajalein Atoll, Marshall Islands",
+      "country_code": "MH"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 23,
+    "fields": {
+      "code": "LVZ",
+      "description": "Station LVZ, Lovozero, Russia",
+      "country_code": "RU"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 24,
+    "fields": {
+      "code": "MBAR",
+      "description": "Station MBAR, Mbarara, Uganda",
+      "country_code": "UG"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 25,
+    "fields": {
+      "code": "MSEY",
+      "description": "Station MSEY, Mahe, Seychelles",
+      "country_code": "SC"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 26,
+    "fields": {
+      "code": "MSVF",
+      "description": "Station MSVF, Monasavu, Fiji",
+      "country_code": "FJ"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 27,
+    "fields": {
+      "code": "NIL",
+      "description": "Station NIL, Nilore, Pakistan",
+      "country_code": "PK"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 28,
+    "fields": {
+      "code": "NNA",
+      "description": "Station NNA, Nana, Peru",
+      "country_code": "PE"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 29,
+    "fields": {
+      "code": "OBN",
+      "description": "Station OBN, Obninsk, Russia",
+      "country_code": "RU"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 30,
+    "fields": {
+      "code": "PALK",
+      "description": "Station PALK, Pallekele, Sri Lanka",
+      "country_code": "LK"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 31,
+    "fields": {
+      "code": "PFO",
+      "description": "Station PFO, Piñon Flat, California, USA",
+      "country_code": "US"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 32,
+    "fields": {
+      "code": "RAYN",
+      "description": "Station RAYN, Ar Rayn, Saudi Arabia",
+      "country_code": "SA"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 33,
+    "fields": {
+      "code": "RPN",
+      "description": "Station RPN, Easter Island (Rapa Nui), Chile",
+      "country_code": "CL"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 34,
+    "fields": {
+      "code": "SACV",
+      "description": "Station SACV, Santiago Island, Cape Verde",
+      "country_code": "CV"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 35,
+    "fields": {
+      "code": "SHEL",
+      "description": "Station SHEL, Horse Pasture, Island of St. Helena",
+      "country_code": "SH"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 36,
+    "fields": {
+      "code": "SIMI",
+      "description": "Station SIMI, Simiganj, Tajikistan",
+      "country_code": "TJ"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 37,
+    "fields": {
+      "code": "SUR",
+      "description": "Station SUR, Sutherland, Republic of South Africa",
+      "country_code": "ZA"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 38,
+    "fields": {
+      "code": "TAU",
+      "description": "Station TAU, Tasmania, Australia",
+      "country_code": "AU"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 39,
+    "fields": {
+      "code": "TLY",
+      "description": "Station TLY, Talaya, Russia",
+      "country_code": "RU"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 40,
+    "fields": {
+      "code": "UOSS",
+      "description": "Station UOSS, United Arab Emirates",
+      "country_code": "AE"
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 41,
+    "fields": {
+      "code": "WRAB",
+      "description": "Station WRAB, Tennant Creek, Australia",
+      "country_code": "AU"
+    }
+  }
+]

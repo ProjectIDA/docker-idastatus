@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Station List</h1>
+  {% if station_list %}
+  <ul>
+    {% for station in station_list %}
+      <li>
+        <a href="{{ station.get_absolute_url }}">{{ station.code }}</a> ({{station.description}})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no stations in the database.</p>
+  {% endif %}       
+{% endblock %}

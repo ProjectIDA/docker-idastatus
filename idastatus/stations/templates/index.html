@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+    <title>IDA Status</title>
+{% endblock %}
+
+{% block content %}
+  <h1>IDA Status</h1>
+  <p>Welcome to IDA Status, a website developed by <em>Project IDA</em>!</p>
+  <h2>Dynamic content</h2>
+  <p>The Project has the following counts:</p>
+  <ul>
+    <li><strong>Station Count:</strong> {{ num_stations }}</li>
+  </ul>
+{% endblock %}
