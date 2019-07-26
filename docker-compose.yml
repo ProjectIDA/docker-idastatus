@@ -2,20 +2,22 @@ version: '3.7'
 
 services:
   db:
-    image: postgres
+    image: postgres:11.2
 
-  db-init:
-    build:
-      context: ./db-init
-    depends_on: 
-      - db
   web:
     build: 
       context: ./idastatus
+
     command: python manage.py runserver 0.0.0.0:8000
+
     volumes:
       - ./idastatus:/ida/code/
+
     ports:
       - "8000:8000"
+
+    links:
+      - db
+
     depends_on:
       - db
