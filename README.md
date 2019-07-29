@@ -13,7 +13,7 @@ To create the containers and run the Django applications...
 
 *    Clone this repo to your Macintosh and go to the root directory of the repo.
 *    First we need to build the containers with <code>docker-compose build</code>
-*    Then bring the containers up with <code>docker-compose run</code>
+*    Then bring the containers up with <code>docker-compose up</code>
 
 The containers are now running, both the web service and the database service.  You can start your browser and go to the web page:
 
