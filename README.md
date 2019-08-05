@@ -37,3 +37,15 @@ At this point we need to apply database migrations to the database, as well as a
 At this point you should be able to reload the home web page from the following URL and see the home page of the idastatus project...
 
 *    <code>http://127.0.0.1:8000/</code>
+
+To connect to the container, you can do the following:
+
+*    <code>docker ps</code>
+
+From the results of that command, you can get the Container ID (the first column in the results) of container to which you want to connect.  Then:
+
+*    <code>docker exec -it container_id bash</code>
+
+This will run a bash shell on that container and log you into it as root.  Then, execute any commands you wish or use the following to connect to a database with the psql client.
+
+*    <code>psql --username=db_username database_name</code>
