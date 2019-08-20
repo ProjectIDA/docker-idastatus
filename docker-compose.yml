@@ -3,6 +3,12 @@ version: '3.7'
 services:
   db:
     image: postgres:11.2
+    ports: 
+      - "5432"
+    environment:
+      - POSTGRES_DB=idastatus
+      - POSTGRES_USER=idadb
+      - POSTGRES_PASSWORD=password
 
   web:
     build: 
