@@ -3,6 +3,8 @@ version: '3.7'
 services:
   db:
     image: postgres:11.2
+    volumes:
+      - db-data:/var/lib/postgresql/data
     ports: 
       - "5432"
     environment:
@@ -27,3 +29,7 @@ services:
 
     depends_on:
       - db
+
+volumes:
+  db-data:
+    driver: local
