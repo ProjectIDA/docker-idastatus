@@ -4,4 +4,4 @@ from .models import Station
 class StationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Station
-        fields = ('id', 'code', 'description')
+        fields = ('code', 'description')
