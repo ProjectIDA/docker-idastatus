@@ -7,7 +7,7 @@ class Network(models.Model):
 
     altcode = models.CharField(max_length=4, blank=True, null=True)
     code = models.CharField(max_length=4, blank=True,
-                            null=True, help_text='Station code')
+        null=True, help_text='Station code')
     datetime = models.DateTimeField(blank=True, null=True, help_text='')
     description = models.CharField(
         max_length=200, blank=True, null=True, help_text='Network description')
@@ -22,7 +22,6 @@ class Network(models.Model):
         return self.code
 
 
-
 class Station(models.Model):
     """Model representing a station."""
     GEODETIC_DATUM = (
@@ -32,14 +31,14 @@ class Station(models.Model):
     )
 
     addr1 = models.CharField(max_length=50, blank=True,
-                             null=True, help_text='Address field 1')
+        null=True, help_text='Address field 1')
     addr2 = models.CharField(max_length=50, blank=True,
-                             null=True, help_text='Address field 2')
+        null=True, help_text='Address field 2')
     altcode = models.CharField(max_length=4, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True,
-                            null=True, help_text='City')
+        null=True, help_text='City')
     code = models.CharField(max_length=4, blank=True,
-                            null=True, help_text='Station code')
+        null=True, help_text='Station code')
     country = models.CharField(
         max_length=50, blank=True, null=True, help_text='Country')
     country_code = models.CharField(
@@ -61,7 +60,7 @@ class Station(models.Model):
         max_length=200, blank=True, null=True, help_text='')
     lon = models.FloatField(blank=True, null=True, help_text='Longitude')
     name = models.CharField(max_length=200, blank=True,
-                            null=True, help_text='')
+        null=True, help_text='')
     network_id = models.ForeignKey(
         Network, null=True, on_delete=models.CASCADE, help_text='')
     postal_code = models.CharField(
