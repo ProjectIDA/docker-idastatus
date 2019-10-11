@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3.7-slim-buster
 
 WORKDIR /ida/code
 
@@ -6,12 +6,12 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # install psycopg2
-RUN apk update \
-    && apk add --virtual build-deps gcc python3-dev musl-dev \
-    && apk add postgresql-dev \
-    && apk add bash \
-    && pip install psycopg2 \
-    && apk del build-deps
+RUN apt-get update \
+    && apt-get -y install build-essential gcc python3-dev musl-dev \
+#    && apt-get -y install postgresql-dev \
+    && apt-get -y install bash \
+    && pip install psycopg2-binary \
+    && apt-get -y remove build-essential
 
 COPY requirements.txt /ida/code/
 
