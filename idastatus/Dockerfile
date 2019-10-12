@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED 1
 RUN apt-get update \
     && apt-get -y install build-essential gcc python3-dev musl-dev \
 #    && apt-get -y install postgresql-dev \
-    && apt-get -y install bash \
+    && apt-get -y install bash vim \
     && pip install psycopg2-binary \
     && apt-get -y remove build-essential
 
@@ -20,3 +20,5 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 COPY . /ida/code/
+
+COPY init.sql /docker-entrypoint-initdb.d/
