@@ -3,6 +3,14 @@ version: '3.7'
 services:
   db:
     image: postgres:11.2
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports: 
+      - "5432"
+    environment:
+      - POSTGRES_DB=idastatus
+      - POSTGRES_USER=idadb
+      - POSTGRES_PASSWORD=password
 
   web:
     build: 
@@ -21,3 +29,14 @@ services:
 
     depends_on:
       - db
+
+# this service will use same image, and once the migration is done it will be stopped
+  web_migrations:
+    build: 
+      context: ./idastatus
+
+    command: python manage.py migrate
+
+volumes:
+  db-data:
+    driver: local
