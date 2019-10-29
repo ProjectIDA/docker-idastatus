@@ -1,0 +1,14 @@
+[
+  {
+    "model": "stations.iriswithdraw",
+    "pk": 1,
+    "fields": {
+        "chan": "",
+        "end_t": "",
+        "loc": "",
+        "sta": "",
+        "start_t": "",
+        "station_id": ""
+    }
+  }
+]

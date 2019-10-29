@@ -1,0 +1,23 @@
+[
+  {
+    "model": "stations.channel_epoch",
+    "pk": 1,
+    "fields": {
+        "altcode": "",
+        "chan": "",
+        "edepth": "",
+        "end_t": "",
+        "flags": "",
+        "hang": "",
+        "datetime": "",
+        "description": "",
+        "end_date": "",
+        "histcode": "",
+        "start_t": "",
+        "station_id": "",
+        "storage_format": "",
+        "string": "",
+        "vang": ""
+    }
+  }
+]
