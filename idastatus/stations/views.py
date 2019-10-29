@@ -32,11 +32,10 @@ class StationListView(generic.ListView):
         context = super(StationListView, self).get_context_data(**kwargs)
         return context
     
-'''
 class StationDetailView(generic.ListView):
 
-    model = Station
-'''
+    queryset = Station.objects.all()
+    serializer_class = StationSerializer
 
 class StationAPIView(viewsets.ModelViewSet):
     queryset = Station.objects.all()

@@ -1,0 +1,17 @@
+[
+  {
+    "model": "stations.stage",
+    "pk": 1,
+    "fields": {
+        "station_id": "",
+        "decifac": "",
+        "dfile": "",
+        "dir": "",
+        "gcalib": "",
+        "gnom": "",
+        "iunits": "",
+        "ounits": "",
+        "srate": ""
+    }
+  }
+]

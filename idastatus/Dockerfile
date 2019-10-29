@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3.7-slim-buster
 
 WORKDIR /ida/code
 
@@ -6,11 +6,12 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # install psycopg2
-RUN apk update \
-    && apk add --virtual build-deps gcc python3-dev musl-dev \
-    && apk add postgresql-dev \
-    && pip install psycopg2 \
-    && apk del build-deps
+RUN apt-get update \
+    && apt-get -y install build-essential gcc python3-dev musl-dev \
+#    && apt-get -y install postgresql-dev \
+    && apt-get -y install bash vim \
+    && pip install psycopg2-binary \
+    && apt-get -y remove build-essential
 
 COPY requirements.txt /ida/code/
 
@@ -19,3 +20,5 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 COPY . /ida/code/
+
+COPY init.sql /docker-entrypoint-initdb.d/

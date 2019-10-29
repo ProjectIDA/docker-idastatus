@@ -1,0 +1,15 @@
+[
+    {
+      "model": "stations.irisepoch",
+      "pk": 1,
+      "fields": {
+        "chan": "",
+        "decimal": "",
+        "end_t": "",
+        "loc": "",
+        "sta": "",
+        "start_t": "",
+        "station_id": ""
+      }
+    }
+]

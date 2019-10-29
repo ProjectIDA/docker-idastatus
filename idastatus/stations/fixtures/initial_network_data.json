@@ -1,0 +1,15 @@
+[
+  {
+    "model": "stations.network",
+    "pk": 1,
+    "fields": {
+      "altcode": "II",
+      "code": "II",
+      "datetime": "",
+      "description": "(GSN) Globsl Seismograph Network (IRIS/IDA)",
+      "end_date": "",
+      "histcode": "",
+      "startdate": ""
+    }
+  }
+]
