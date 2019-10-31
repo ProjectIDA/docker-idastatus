@@ -8,10 +8,9 @@ ENV PYTHONUNBUFFERED 1
 # install psycopg2
 RUN apt-get update \
     && apt-get -y install build-essential gcc python3-dev musl-dev \
-#    && apt-get -y install postgresql-dev \
+    && apt-get -y install postgresql-client \
     && apt-get -y install bash vim \
-    && pip install psycopg2-binary \
-    && apt-get -y remove build-essential
+    && pip install psycopg2-binary
 
 COPY requirements.txt /ida/code/
 

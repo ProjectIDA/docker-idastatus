@@ -16,7 +16,10 @@ services:
     build: 
       context: ./idastatus
 
-    command: python manage.py runserver 0.0.0.0:8000
+    #command: ./wait-for db:5432 -- echo "doing runserver"
+    command: ["./wait-for-postgres.sh", "db", "idadb", "password", "python manage.py runserver 0.0.0.0:8000"]
+    depends_on:
+      - db
 
     volumes:
       - ./idastatus:/ida/code/
@@ -27,15 +30,14 @@ services:
     links:
       - db
 
-    depends_on:
-      - db
-
 # this service will use same image, and once the migration is done it will be stopped
   web_migrations:
     build: 
       context: ./idastatus
 
-    command: python manage.py migrate
+    command: ["./wait-for-postgres.sh", "db", "idadb", "password", "python manage.py migrate"]
+    depends_on:
+      - db
 
 volumes:
   db-data:
