@@ -20,25 +20,9 @@ The containers are now running, both the web service and the database service.  
 
     http://127.0.0.1:8000/
 
-At this point you will get an error from the SQL query
+At this point you will see that you have no stations.  This is because we haven't applied an initial data load from a fixture file.  
 
-    SELECT * from stations.station;
-
-This is because we haven't yet created a database in the db container.  I'll be looking into doing this automatically, but for now we will do this from the command line.
-
-Execute the following commands from the bash prompt at the root of the idastatus project...
-
-    docker exec docker-idastatus_db_1 psql -U postgres -w -p 5432 --command="CREATE DATABASE idastatus"
-
-    docker exec docker-idastatus_db_1 psql -U postgres -w -p 5432 --command="create user idadb with encrypted password 'password';"
-
-    docker exec docker-idastatus_db_1 psql -U postgres -w -p 5432 --command="grant all privileges on database idastatus to idadb;"
-
-This will create the idastatus database and the idadb user with sufficient privileges for development.  **NOTE!!! These privileges should not be used for production databases**
-
-At this point we need to apply database migrations to the database, as well as add data to the database using the fixtures files.  Execute the following commands...
-
-    docker-compose exec web python manage.py migrate --noinput
+Execute the following commands from the bash prompt at the root of the idastatus project, in this case: .../docker-idastatus/idastatus
 
     docker-compose exec web python manage.py loaddata stations/fixtures/initial_data.json
 
