@@ -9,7 +9,8 @@ ENV PYTHONUNBUFFERED 1
 RUN apt-get update \
     && apt-get -y install build-essential gcc python3-dev musl-dev \
     && apt-get -y install postgresql-client \
-    && apt-get -y install bash vim \
+    && apt-get -y install bash \
+    && apt-get -y install vim \
     && pip install psycopg2-binary
 
 COPY requirements.txt /ida/code/
