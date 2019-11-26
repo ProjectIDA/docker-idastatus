@@ -1,14 +1,25 @@
-version: '3.7'
+version: '3'
 
 services:
   db:
     image: postgres:11.2
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports: 
+      - "5432"
+    environment:
+      - POSTGRES_DB=idastatus
+      - POSTGRES_USER=idadb
+      - POSTGRES_PASSWORD=password
 
   web:
     build: 
       context: ./idastatus
 
-    command: python manage.py runserver 0.0.0.0:8000
+    #command: ./wait-for db:5432 -- echo "doing runserver"
+    command: ["./wait-for-postgres.sh", "db", "idadb", "password", "python manage.py runserver 0.0.0.0:8000"]
+    depends_on:
+      - db
 
     volumes:
       - ./idastatus:/ida/code/
@@ -19,5 +30,15 @@ services:
     links:
       - db
 
+# this service will use same image, and once the migration is done it will be stopped
+  web_migrations:
+    build: 
+      context: ./idastatus
+
+    command: ["./wait-for-postgres.sh", "db", "idadb", "password", "python manage.py migrate"]
     depends_on:
       - db
+
+volumes:
+  db-data:
+    driver: local

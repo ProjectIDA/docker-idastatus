@@ -6,7 +6,10 @@ from django.views import generic
 from django.views.generic.base import View
 from django.views.generic import TemplateView, ListView
 
-from stations.models import Station
+from rest_framework import viewsets
+
+from .models import Station
+from .serializers import StationSerializer
 
 # Create your views here.
 def index(request):
@@ -29,8 +32,13 @@ class StationListView(generic.ListView):
         context = super(StationListView, self).get_context_data(**kwargs)
         return context
     
-'''
 class StationDetailView(generic.ListView):
 
-    model = Station
-'''
+    queryset = Station.objects.all()
+    serializer_class = StationSerializer
+
+class StationAPIView(viewsets.ModelViewSet):
+    queryset = Station.objects.all()
+    serializer_class = StationSerializer
+
+
