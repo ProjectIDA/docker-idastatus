@@ -37,7 +37,7 @@ class Station(models.Model):
     altcode = models.CharField(default=None, max_length=4, blank=True, null=True)
     city = models.CharField(default=None, max_length=50, blank=True,
         null=True, help_text='City')
-    code = models.CharField(max_length=4, help_text='Station code')
+    code = models.CharField(max_length=6, help_text='Station code')  # datascope: sta
     country = models.CharField(default=None, 
         max_length=50, blank=True, null=True, help_text='Country')
     country_code = models.CharField(default=None, max_length=2, help_text='Station\'s country code')
@@ -54,6 +54,7 @@ class Station(models.Model):
     histcode = models.CharField(default=None, 
         max_length=15, blank=True, null=True, help_text='')
     lat = models.FloatField(default=None, blank=False, null=True, help_text='Latitude')
+    lddate = models.DateTimeField(default=None, blank=True, null=True, help_text='(epoch) time of last record modification')
     loc_descr = models.CharField(default=None, 
         max_length=200, blank=True, null=True, help_text='')
     lon = models.FloatField(default=None, blank=False, null=True, help_text='Longitude')
