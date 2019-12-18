@@ -7,10 +7,10 @@ class Network(models.Model):
 
     altcode = models.CharField(max_length=4, blank=True, null=True)
     code = models.CharField(max_length=4, blank=True,
-        null=True, help_text='Station code')
+        null=True, help_text='ktation code')
     datetime = models.DateTimeField(blank=True, null=True, help_text='')
     description = models.CharField(
-        max_length=200, blank=True, null=True, help_text='Network description')
+        max_length=100, blank=True, null=True, help_text='Network description')
     end_date = models.DateField(
         blank=True, null=True, help_text='Last valid time for data')
     histcode = models.CharField(
@@ -42,7 +42,7 @@ class Station(models.Model):
         max_length=50, blank=True, null=True, help_text='Country')
     country_code = models.CharField(default=None, max_length=2, help_text='Station\'s country code')
     description = models.CharField(default=None, 
-        max_length=200, help_text='Station description')
+        max_length=100, help_text='Station description')
     elev = models.FloatField(default=None, blank=False, null=True, help_text='Elevation')
     end_t = models.DecimalField(default=None, 
         max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
@@ -95,21 +95,31 @@ class ChannelEpoch(models.Model):
         ('THREE', 'Third One'),
     )
 
+    """ Flag choices """
+    FLAGS = (
+        ('C', 'continuous'),
+        ('T', 'triggered'),
+        ('G', 'geophysical'),
+        ('W', 'weather'),
+    )
+
     altcode = models.CharField(max_length=4, blank=True, null=True)
-    chan = models.CharField(max_length=4, blank=True, null=True, help_text='')
+    chan = models.CharField(max_length=8, blank=True, null=True, help_text='')
     edepth = models.FloatField(blank=False, null=True, help_text='')
     end_t = models.DateTimeField(blank=True, null=True, help_text='')
-    flags = models.CharField(
-        max_length=200, blank=True, null=True, help_text='')
+    flag = models.CharField(
+        choices-FLAGS, max_length=10, blank=True, null=True, help_text='')
     hang = models.DecimalField(
         max_digits=8, decimal_places=4, blank=True, null=True, help_text='')
     datetime = models.DateTimeField(blank=True, null=True, help_text='')
     description = models.CharField(
-        max_length=200, blank=True, null=True, help_text='Network description')
+        max_length=100, blank=True, null=True, help_text='Epoch description')
     end_date = models.DateField(
         blank=True, null=True, help_text='Last valid time for data')
     histcode = models.CharField(
         max_length=50, blank=True, null=True, help_text='')
+    instype = models.CharField(
+        max_length=12, blank=True, null=True, help_text='')
     start_t = models.DateTimeField(blank=True, null=True, help_text='')
     station_id = models.ForeignKey(
         Station, null=True, on_delete=models.CASCADE, help_text='')
@@ -131,9 +141,9 @@ class Stage(models.Model):
         Station, on_delete=models.CASCADE, help_text='')
     decifac = models.BigIntegerField()
     dfile = models.CharField(
-        max_length=200, blank=True, null=True, help_text='')
+        max_length=64, blank=True, null=True, help_text='')
     dir = models.CharField(
-        max_length=200, blank=True, null=True, help_text='')
+        max_length=128, blank=True, null=True, help_text='')
     gcalib = models.DecimalField(
         max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
     gnom = models.DecimalField(
