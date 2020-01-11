@@ -7,19 +7,18 @@ class Network(models.Model):
 
     altcode = models.CharField(max_length=4, blank=True, null=True)
     code = models.CharField(max_length=4, blank=True,
-        null=True, help_text='Station code')
+        null=True, help_text='ktation code')
     datetime = models.DateTimeField(blank=True, null=True, help_text='')
     description = models.CharField(
-        max_length=200, blank=True, null=True, help_text='Network description')
+        max_length=100, blank=True, null=True, help_text='Network description')
     end_date = models.DateField(
         blank=True, null=True, help_text='Last valid time for data')
     histcode = models.CharField(
         max_length=50, blank=True, null=True, help_text='')
-    start_date = models.DateField(blank=True, null=True, help_text='')
+    begt = models.DateField(blank=True, null=True, help_text='')
 
     def __str__(self):
         """String for representing the Model object."""
-        return self.code
 
 
 class Station(models.Model):
@@ -37,14 +36,14 @@ class Station(models.Model):
     altcode = models.CharField(default=None, max_length=4, blank=True, null=True)
     city = models.CharField(default=None, max_length=50, blank=True,
         null=True, help_text='City')
-    code = models.CharField(max_length=4, help_text='Station code')
+    code = models.CharField(max_length=6, help_text='Station code')  # datascope: sta
     country = models.CharField(default=None, 
         max_length=50, blank=True, null=True, help_text='Country')
-    country_code = models.CharField(default=None, max_length=2, help_text='Station\'s country code')
+    country_code = models.CharField(default=None, max_length=2, null=True, help_text='Station\'s country code')
     description = models.CharField(default=None, 
-        max_length=200, help_text='Station description')
+        max_length=100, blank=True, null=True, help_text='Station description')
     elev = models.FloatField(default=None, blank=False, null=True, help_text='Elevation')
-    end_t = models.DecimalField(default=None, 
+    endt = models.DecimalField(default=None, 
         max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
     # TODO to be added at a later date
     geo_datum = models.CharField(
@@ -54,10 +53,12 @@ class Station(models.Model):
     histcode = models.CharField(default=None, 
         max_length=15, blank=True, null=True, help_text='')
     lat = models.FloatField(default=None, blank=False, null=True, help_text='Latitude')
+    lddate = models.DecimalField(default=None, 
+        max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
     loc_descr = models.CharField(default=None, 
         max_length=200, blank=True, null=True, help_text='')
     lon = models.FloatField(default=None, blank=False, null=True, help_text='Longitude')
-    name = models.CharField(default=None, max_length=200, blank=True,
+    staname = models.CharField(default=None, max_length=200, blank=True,
         null=True, help_text='')
     network_id = models.ForeignKey(Network, 
         null=True, on_delete=models.CASCADE, help_text='')
@@ -65,7 +66,7 @@ class Station(models.Model):
         max_length=15, blank=True, null=True, help_text='Postal Code')
     province = models.CharField(default=None, 
         max_length=50, blank=True, null=True, help_text='Province')
-    start_t = models.DecimalField(default=None, 
+    begt = models.DecimalField(default=None, 
         max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
     status_code = models.CharField(default=None, 
         max_length=100, blank=True, null=True, help_text='')
@@ -94,22 +95,32 @@ class ChannelEpoch(models.Model):
         ('THREE', 'Third One'),
     )
 
+    """ Flag choices """
+    FLAGS = (
+        ('C', 'continuous'),
+        ('T', 'triggered'),
+        ('G', 'geophysical'),
+        ('W', 'weather'),
+    )
+
     altcode = models.CharField(max_length=4, blank=True, null=True)
-    chan = models.CharField(max_length=4, blank=True, null=True, help_text='')
+    chan = models.CharField(max_length=8, blank=True, null=True, help_text='')
     edepth = models.FloatField(blank=False, null=True, help_text='')
-    end_t = models.DateTimeField(blank=True, null=True, help_text='')
-    flags = models.CharField(
-        max_length=200, blank=True, null=True, help_text='')
+    endt = models.DateTimeField(blank=True, null=True, help_text='')
+    flag = models.CharField(
+        choices=FLAGS, max_length=10, blank=True, null=True, help_text='')
     hang = models.DecimalField(
         max_digits=8, decimal_places=4, blank=True, null=True, help_text='')
     datetime = models.DateTimeField(blank=True, null=True, help_text='')
     description = models.CharField(
-        max_length=200, blank=True, null=True, help_text='Network description')
+        max_length=100, blank=True, null=True, help_text='Epoch description')
     end_date = models.DateField(
         blank=True, null=True, help_text='Last valid time for data')
     histcode = models.CharField(
         max_length=50, blank=True, null=True, help_text='')
-    start_t = models.DateTimeField(blank=True, null=True, help_text='')
+    instype = models.CharField(
+        max_length=12, blank=True, null=True, help_text='')
+    begt = models.DateTimeField(blank=True, null=True, help_text='')
     station_id = models.ForeignKey(
         Station, null=True, on_delete=models.CASCADE, help_text='')
     storage_format = models.CharField(
@@ -130,9 +141,9 @@ class Stage(models.Model):
         Station, on_delete=models.CASCADE, help_text='')
     decifac = models.BigIntegerField()
     dfile = models.CharField(
-        max_length=200, blank=True, null=True, help_text='')
+        max_length=64, blank=True, null=True, help_text='')
     dir = models.CharField(
-        max_length=200, blank=True, null=True, help_text='')
+        max_length=128, blank=True, null=True, help_text='')
     gcalib = models.DecimalField(
         max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
     gnom = models.DecimalField(
@@ -148,13 +159,13 @@ class IrisWithdraw(models.Model):
     """Model representing a IRIS withdraw"""
     chan = models.CharField(
         max_length=4, blank=True, null=True, help_text='')
-    end_t = models.DecimalField(
+    endt = models.DecimalField(
         max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
     loc = models.CharField(
         max_length=2, blank=True, null=True, help_text='')
     sta = models.CharField(
         max_length=4, blank=True, null=True, help_text='')
-    start_t = models.DecimalField(
+    begt = models.DecimalField(
         max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
     station_id = models.ForeignKey(
         Station, on_delete=models.CASCADE, help_text='')
@@ -165,13 +176,13 @@ class IrisEpoch(models.Model):
         max_length=4, blank=True, null=True, help_text='')
     decimal = models.DecimalField(
         max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
-    end_t = models.DecimalField(
+    endt = models.DecimalField(
         max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
     loc = models.CharField(
         max_length=2, blank=True, null=True, help_text='')
     sta = models.CharField(
         max_length=4, blank=True, null=True, help_text='')
-    start_t = models.DecimalField(
+    begt = models.DecimalField(
         max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
     station_id = models.ForeignKey(
         Station, on_delete=models.CASCADE, help_text='')
