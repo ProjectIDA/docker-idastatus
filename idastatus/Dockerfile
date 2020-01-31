@@ -7,6 +7,7 @@ ENV PYTHONUNBUFFERED 1
 
 # install psycopg2
 RUN apt-get update \
+    && apt-get -y install apt-utils \
     && apt-get -y install build-essential gcc python3-dev musl-dev \
     && apt-get -y install postgresql-client \
     && apt-get -y install bash \
