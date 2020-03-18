@@ -84,7 +84,7 @@ The procedure to deploy this continer collection is as follow:
 
 * Check out the docker-idastatus repo on the install server
 
-        git clone <https://github.com/ProjectIDA/docker-idastatus.git>
+        git clone https://github.com/ProjectIDA/docker-idastatus.git
 
 * Move into the repo directory
 
@@ -96,4 +96,4 @@ The procedure to deploy this continer collection is as follow:
 
 * Test the API service from another machine
 
-        <http://idastatus-dev.ucsd.edu:8000/api/stations/>
+        http://idastatus-dev.ucsd.edu:8000/api/stations/
