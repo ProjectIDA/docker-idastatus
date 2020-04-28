@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Network List</h1>
+  {% if network_list %}
+  <ul>
+    {% for network in network_list %}
+      <li>
+        <a href="{{ network.get_absolute_url }}">{{ network.code }}</a> ({{network.description}})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There appear to be no networks in the database.</p>
+  {% endif %}       
+{% endblock %}
