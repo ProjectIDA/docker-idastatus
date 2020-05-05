@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Station
+from .models import Station, Network
 
 class StationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,4 +14,18 @@ class StationSerializer(serializers.ModelSerializer):
                   'elev',
                   'staname',
                   'lddate',
+                 )
+
+
+class NetworkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Network
+        fields = ('id', 
+                  'altcode', 
+                  'code', 
+                  'datetime',
+                  'description',
+                  'histcode',
+                  'begt',
+                  'endt',
                  )

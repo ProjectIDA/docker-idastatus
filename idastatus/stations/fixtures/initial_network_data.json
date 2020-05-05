@@ -1,0 +1,12 @@
+[
+    {
+        "model": "stations.network",
+        "pk": 1,
+        "fields": {
+            "code": "II",
+            "description": "Global Seismograph Network - IRIS/IDA (GSN)",
+            "begt": "530496000.00000",
+            "endt": "9999999999.99900"
+        }
+    }
+]
