@@ -96,20 +96,11 @@ class ChannelEpoch(models.Model):
         ('THREE', 'Third One'),
     )
 
-    """ Flag choices """
-    FLAGS = (
-        ('C', 'continuous'),
-        ('T', 'triggered'),
-        ('G', 'geophysical'),
-        ('W', 'weather'),
-    )
-
     altcode = models.CharField(max_length=4, blank=True, null=True)
     chan = models.CharField(max_length=8, blank=True, null=True, help_text='')
     edepth = models.FloatField(blank=False, null=True, help_text='')
     endt = models.DateTimeField(blank=True, null=True, help_text='')
-    flag = models.CharField(
-        choices=FLAGS, max_length=10, blank=True, null=True, help_text='')
+    flag = models.CharField(max_length=2, blank=True, null=True, help_text='')
     hang = models.DecimalField(
         max_digits=8, decimal_places=4, blank=True, null=True, help_text='')
     datetime = models.DateTimeField(blank=True, null=True, help_text='')
