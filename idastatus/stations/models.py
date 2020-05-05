@@ -7,15 +7,16 @@ class Network(models.Model):
 
     altcode = models.CharField(max_length=4, blank=True, null=True)
     code = models.CharField(max_length=4, blank=True,
-        null=True, help_text='ktation code')
+        null=True, help_text='Network code')
     datetime = models.DateTimeField(blank=True, null=True, help_text='')
     description = models.CharField(
         max_length=100, blank=True, null=True, help_text='Network description')
-    end_date = models.DateField(
-        blank=True, null=True, help_text='Last valid time for data')
     histcode = models.CharField(
         max_length=50, blank=True, null=True, help_text='')
-    begt = models.DateField(blank=True, null=True, help_text='')
+    begt = models.DecimalField(default=None, 
+        max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
+    endt = models.DecimalField(default=None, 
+        max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
 
     def __str__(self):
         """String for representing the Model object."""
