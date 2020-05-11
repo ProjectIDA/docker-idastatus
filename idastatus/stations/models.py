@@ -44,6 +44,8 @@ class Station(models.Model):
     description = models.CharField(default=None, 
         max_length=100, blank=True, null=True, help_text='Station description')
     elev = models.FloatField(default=None, blank=False, null=True, help_text='Elevation')
+    begt = models.DecimalField(default=None, 
+        max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
     endt = models.DecimalField(default=None, 
         max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
     # TODO to be added at a later date
@@ -67,8 +69,6 @@ class Station(models.Model):
         max_length=15, blank=True, null=True, help_text='Postal Code')
     province = models.CharField(default=None, 
         max_length=50, blank=True, null=True, help_text='Province')
-    begt = models.DecimalField(default=None, 
-        max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
     status_code = models.CharField(default=None, 
         max_length=100, blank=True, null=True, help_text='')
     status_descr = models.CharField(default=None, 
@@ -89,39 +89,33 @@ class Station(models.Model):
 
 
 class ChannelEpoch(models.Model):
-    """Model representing a network."""
+    """TODO: Model representing a network."""
     STORAGE = (
         ('ONE', 'First One'),
         ('TWO', 'Second One'),
         ('THREE', 'Third One'),
     )
 
-    """ Flag choices """
-    FLAGS = (
-        ('C', 'continuous'),
-        ('T', 'triggered'),
-        ('G', 'geophysical'),
-        ('W', 'weather'),
-    )
-
     altcode = models.CharField(max_length=4, blank=True, null=True)
     chan = models.CharField(max_length=8, blank=True, null=True, help_text='')
+    code = models.CharField(max_length=4, blank=True, null=True, help_text='ChannelEpoch code')
     edepth = models.FloatField(blank=False, null=True, help_text='')
-    endt = models.DateTimeField(blank=True, null=True, help_text='')
-    flag = models.CharField(
-        choices=FLAGS, max_length=10, blank=True, null=True, help_text='')
+    begt = models.DecimalField(default=None, 
+        max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
+    endt = models.DecimalField(default=None, 
+        max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
+    # flag values composed of combinations of 
+    # 'C' = 'continuous' 'T' =  'triggered' 'G' =  'geophysical' 'W' =  'weather'
+    flag = models.CharField(max_length=10, blank=True, null=True, help_text='')
     hang = models.DecimalField(
         max_digits=8, decimal_places=4, blank=True, null=True, help_text='')
     datetime = models.DateTimeField(blank=True, null=True, help_text='')
     description = models.CharField(
         max_length=100, blank=True, null=True, help_text='Epoch description')
-    end_date = models.DateField(
-        blank=True, null=True, help_text='Last valid time for data')
     histcode = models.CharField(
         max_length=50, blank=True, null=True, help_text='')
     instype = models.CharField(
         max_length=12, blank=True, null=True, help_text='')
-    begt = models.DateTimeField(blank=True, null=True, help_text='')
     station_id = models.ForeignKey(
         Station, null=True, on_delete=models.CASCADE, help_text='')
     storage_format = models.CharField(
@@ -130,6 +124,9 @@ class ChannelEpoch(models.Model):
         max_length=200, blank=True, null=True, help_text='')
     vang = models.DecimalField(
         max_digits=8, decimal_places=4, blank=True, null=True, help_text='')
+    loc = models.CharField(
+        max_length=2, blank=True, null=True, help_text='')
+    nomfreq = models.FloatField(default=None, blank=False, null=True, help_text='Longitude')
 
     def __str__(self):
         """String for representing the Model object."""

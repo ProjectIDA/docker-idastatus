@@ -15,8 +15,16 @@ run:			## start up all containers
 	cd $(TARGETDIR)
 	docker-compose up -d
 
-loadfixtures:		## load fixtures into database
+stop:			## start up all containers
+	cd $(TARGETDIR)
+	docker-compose stop
+
+loadfixtures:	## load fixtures into database
 	cd $(TARGETDIR)
 	docker-compose exec web python manage.py loaddata stations/fixtures/initial_station_data.json
 	docker-compose exec web python manage.py loaddata stations/fixtures/initial_network_data.json
+	docker-compose exec web python manage.py loaddata stations/fixtures/initial_chan_data.json
+
+execpsql:		## log into postgres with psql
+	docker exec -it dockeridastatus_db_1 psql idastatus idadb
 

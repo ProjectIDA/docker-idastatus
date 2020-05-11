@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Station, Network
+from .models import Station, Network, ChannelEpoch
 
 class StationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,7 +16,6 @@ class StationSerializer(serializers.ModelSerializer):
                   'lddate',
                  )
 
-
 class NetworkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Network
@@ -28,4 +27,19 @@ class NetworkSerializer(serializers.ModelSerializer):
                   'histcode',
                   'begt',
                   'endt',
+                 )
+
+class ChannelEpochSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChannelEpoch
+        fields = ('id', 
+                  'chan', 
+                  'code', 
+                  'begt',
+                  'endt',
+                  'edepth',
+                  'hang',
+                  'vang',
+                  'flag',
+                  'instype',
                  )
