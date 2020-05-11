@@ -8,13 +8,16 @@ from rest_framework import routers
 router = routers.DefaultRouter()
 router.register('stations', views.StationAPIView)
 router.register('networks', views.NetworkAPIView)
+router.register('channelepochs', views.ChannelEpochAPIView)
 
 urlpatterns = [
     path('', views.index, name='index'),
     path('api/', include(router.urls)),
     path('api/stations', include(router.urls)),
     path('api/networks', include(router.urls)),
+    path('api/channelepochs', include(router.urls)),
     path('favicon.ico', RedirectView.as_view(url='/static/images/favicon.ico')),
     path('stations/', views.StationListView.as_view(), name='station-list'),
     path('networks/', views.NetworkListView.as_view(), name='network-list'),
+    path('channelepochs/', views.ChannelEpochListView.as_view(), name='channelepoch-list'),
 ]
