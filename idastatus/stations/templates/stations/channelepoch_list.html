@@ -6,7 +6,7 @@
   <ul>
     {% for channelepoch in channelepoch_list %}
       <li>
-        <a href="{{ channelepoch.get_absolute_url }}">{{ channelepoch.code }}</a> ({{channelepoch.description}})
+        <a href="{{ channelepoch.get_absolute_url }}">{{ channelepoch.station }}</a> ({{channelepoch.code}})
       </li>
     {% endfor %}
   </ul>
