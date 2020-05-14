@@ -10,14 +10,14 @@ services:
     environment:
       - POSTGRES_DB=idastatus
       - POSTGRES_USER=idadb
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_PASSWORD=fQuDTCP8Js1W
 
   web:
     build: 
       context: ./idastatus
 
     #command: ./wait-for db:5432 -- echo "doing runserver"
-    command: ["./wait-for-postgres.sh", "db", "idadb", "password", "python manage.py runserver 0.0.0.0:8000"]
+    command: ["./wait-for-postgres.sh", "db", "idadb", "fQuDTCP8Js1W", "python manage.py runserver 0.0.0.0:8000"]
     depends_on:
       - db
 
@@ -35,7 +35,7 @@ services:
     build: 
       context: ./idastatus
 
-    command: ["./wait-for-postgres.sh", "db", "idadb", "password", "python manage.py migrate"]
+    command: ["./wait-for-postgres.sh", "db", "idadb", "fQuDTCP8Js1W", "python manage.py migrate"]
     depends_on:
       - db
 
