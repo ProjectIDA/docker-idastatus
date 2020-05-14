@@ -6,40 +6,37 @@ class StationSerializer(serializers.ModelSerializer):
         model = Station
         fields = ('id',
                   'code',
-                  'description',
-                  'begt',
-                  'endt',
-                  'lat',
-                  'lon',
-                  'elev',
-                  'staname',
-                  'lddate',
+                  'elevation',
+                  'start_date',
+                  'end_date',
+                  'latitude',
+                  'longitude',
+                  'site',
+                  'network',
                  )
 
 class NetworkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Network
         fields = ('id', 
-                  'altcode', 
                   'code', 
-                  'datetime',
                   'description',
-                  'histcode',
-                  'begt',
-                  'endt',
+                  'start_time',
+                  'end_timee',
                  )
 
 class ChannelEpochSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChannelEpoch
         fields = ('id', 
-                  'chan', 
                   'code', 
-                  'begt',
-                  'endt',
-                  'edepth',
-                  'hang',
-                  'vang',
-                  'flag',
-                  'instype',
+                  'depth', 
+                  'start_time',
+                  'end_time',
+                  'types',
+                  'azimuth',
+                  'sensor',
+                  'station',
+                  'dip',
+                  'location_code',
                  )
