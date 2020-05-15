@@ -1,31 +1,42 @@
 from rest_framework import serializers
-from .models import Station, Network
+from .models import Station, Network, ChannelEpoch
 
 class StationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Station
-        fields = ('id', 
-                  'code', 
-                  'description',
-                  'begt',
-                  'endt',
-                  'lat',
-                  'lon',
-                  'elev',
-                  'staname',
-                  'lddate',
+        fields = ('id',
+                  'code',
+                  'elevation',
+                  'start_date',
+                  'end_date',
+                  'latitude',
+                  'longitude',
+                  'site',
+                  'network',
                  )
-
 
 class NetworkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Network
         fields = ('id', 
-                  'altcode', 
                   'code', 
-                  'datetime',
                   'description',
-                  'histcode',
-                  'begt',
-                  'endt',
+                  'start_time',
+                  'end_timee',
+                 )
+
+class ChannelEpochSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChannelEpoch
+        fields = ('id', 
+                  'code', 
+                  'depth', 
+                  'start_time',
+                  'end_time',
+                  'types',
+                  'azimuth',
+                  'sensor',
+                  'station',
+                  'dip',
+                  'location_code',
                  )
