@@ -50,7 +50,9 @@ class ChannelEpoch(models.Model):
     station = models.ForeignKey(Station, null=True, on_delete=models.CASCADE, help_text='') #datascope:sta
     dip = models.DecimalField(max_digits=8, decimal_places=4, blank=True, null=True, help_text='') #datascope:vang
     location_code = models.CharField(max_length=2, blank=True, null=True, help_text='') #datascope:loc
-
+    elevation = models.FloatField(default=None, blank=False, null=True, help_text='Station Elevation for this channel') #datascope:elev
+    latitude = models.FloatField(default=None, blank=False, null=True, help_text='Station Latitude for this channel') #datascope:lat
+    longitude = models.FloatField(default=None, blank=False, null=True, help_text='Station Longitude for this channel') #datascope:lon
     def __str__(self):
         """String for representing the ChannelEpoch object."""
         return self.code
