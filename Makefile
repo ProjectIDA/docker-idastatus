@@ -5,7 +5,8 @@ CONTAINERLIST = dockeridastatus_web_1 dockeridastatus_db_1 dockeridastatus_web_m
 IMAGELIST = dockeridastatus_web dockeridastatus_web_migrations
 SERVICELIST = web db web_migrations
 
-all: build run loadfixtures		## build the whole enchilada
+all:
+buildall: build run loadfixtures	## build the whole enchilada
 cleancontainers: stop rmcontainers	## clean containers
 cleanall: stop rmcontainers rmimages	## clean the whole enchilada
 
