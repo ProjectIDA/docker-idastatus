@@ -3,7 +3,7 @@ binaryornot==0.4.4
 certifi==2019.3.9
 chardet==3.0.4
 Click==7.0
-Django==2.2.2
+Django==2.2.11
 future==0.17.1
 idna==2.8
 Jinja2==2.10.1
