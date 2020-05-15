@@ -21,8 +21,8 @@ class NetworkSerializer(serializers.ModelSerializer):
         fields = ('id', 
                   'code', 
                   'description',
-                  'start_time',
-                  'end_timee',
+                  'start_date',
+                  'end_date',
                  )
 
 class ChannelEpochSerializer(serializers.ModelSerializer):
@@ -31,8 +31,8 @@ class ChannelEpochSerializer(serializers.ModelSerializer):
         fields = ('id', 
                   'code', 
                   'depth', 
-                  'start_time',
-                  'end_time',
+                  'start_date',
+                  'end_date',
                   'types',
                   'azimuth',
                   'sensor',
