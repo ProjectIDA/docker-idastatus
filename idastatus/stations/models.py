@@ -13,7 +13,8 @@ class Network(models.Model):
         max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
 
     def __str__(self):
-        """String for representing the Model object."""
+        """String for representing the Network object."""
+        return self.code
 
 
 class Station(models.Model):
@@ -32,7 +33,7 @@ class Station(models.Model):
         return "some_url"
 
     def __str__(self):
-        """String for representing the Model object."""
+        """String for representing the Station object."""
         return self.code
 
 
@@ -51,8 +52,8 @@ class ChannelEpoch(models.Model):
     location_code = models.CharField(max_length=2, blank=True, null=True, help_text='') #datascope:loc
 
     def __str__(self):
-        """String for representing the Model object."""
-        return self.chan
+        """String for representing the ChannelEpoch object."""
+        return self.code
 
 class Stage(models.Model):
     """Model representing a stage"""
@@ -66,6 +67,10 @@ class Stage(models.Model):
     output_units = models.CharField(max_length=200, blank=True, null=True, help_text='') #datascope:ounits
     decimation_input_sample_rate = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='') #datascope:srate
 
+    def __str__(self):
+        """String for representing the Stage object."""
+        return self.station
+
 class IrisWithdraw(models.Model):
     """Model representing a IRIS withdraw"""
     chan = models.CharField(max_length=4, blank=True, null=True, help_text='')
@@ -74,6 +79,10 @@ class IrisWithdraw(models.Model):
     sta = models.CharField(max_length=4, blank=True, null=True, help_text='')
     begt = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
     station = models.ForeignKey(Station, on_delete=models.CASCADE, help_text='')
+
+    def __str__(self):
+        """String for representing the IrisWithdraw object."""
+        return self.chan
 
 class IrisEpoch(models.Model):
     """Model representing a IRIS epoch"""
@@ -85,4 +94,6 @@ class IrisEpoch(models.Model):
     begt = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
     station = models.ForeignKey(Station, on_delete=models.CASCADE, help_text='')
 
-
+    def __str__(self):
+        """String for representing the IrisEpoch object."""
+        return self.chan
