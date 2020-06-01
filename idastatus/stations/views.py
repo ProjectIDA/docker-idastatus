@@ -20,11 +20,13 @@ def index(request):
     num_networks = Network.objects.all().count()
     num_stations = Station.objects.all().count()
     num_channelepochs = ChannelEpoch.objects.all().count()
+    num_stages = Stage.objects.all().count()
 
     context = {
         'num_networks': num_networks,
         'num_stations': num_stations,
         'num_channelepochs': num_channelepochs,
+        'num_stages': num_stages,
     }
 
     return render(request, 'index.html', context=context)
