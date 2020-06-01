@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Stage List</h1>
+  {% if stage_list %}
+  <ul>
+    {% for stage in stage_list %}
+      <li>
+        <a href="{{ stage.get_absolute_url }}">{{ stage.station }}</a> ({{stage.channelepoch}}, {{stage.serial_number}})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There appear to be no stages in the database.</p>
+  {% endif %}       
+{% endblock %}

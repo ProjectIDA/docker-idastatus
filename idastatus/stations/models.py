@@ -3,13 +3,6 @@ from datetime import datetime, timezone
 
 # Create your models here.
 
-class Instype(models.Model):
-    """Model representing the mapping between abbreviated 
-    instrument names and a fuller name/description"""
-
-    abbrev = models.CharField(max_length=6, blank=True, null=True, help_text='Instrument model abbreviation') #datascope:unit
-    description = models.CharField(max_length=255, blank=True, null=True, help_text='Instrument full description') #datascope:desc
-
 class Network(models.Model):
     code = models.CharField(max_length=4, blank=True,
         null=True, help_text='Network code')
@@ -27,7 +20,7 @@ class Network(models.Model):
 
 class Station(models.Model):
     network = models.ForeignKey(Network, null=True, on_delete=models.CASCADE, help_text='Station Network ID')
-    code = models.CharField(max_length=6, help_text='Station code')  # datascope: sta
+    code = models.CharField(max_length=6, help_text='Station code')  # datascope:sta
     elevation = models.FloatField(default=None, blank=True, null=True, help_text='Station Elevation') #datascope:elev
     start_date = models.DecimalField(default=None, max_digits=17, decimal_places=5, blank=True, null=True, help_text='Station Start Date') #datascope:begt
     end_date = models.DecimalField(default=None, max_digits=17, decimal_places=5, blank=True, null=True, help_text='Station End Date') #datascope:endt
@@ -44,6 +37,12 @@ class Station(models.Model):
         """String for representing the Station object."""
         return self.code
 
+class Instype(models.Model):
+    """Model representing the mapping between abbreviated 
+    instrument names and a fuller name/description"""
+
+    abbrev = models.CharField(max_length=6, blank=True, null=True, help_text='Instrument model abbreviation') #datascope:unit
+    description = models.CharField(max_length=255, blank=True, null=True, help_text='Instrument full description') #datascope:desc
 
 class ChannelEpoch(models.Model):
 
@@ -103,24 +102,27 @@ class Stage(models.Model):
 class IrisWithdraw(models.Model):
     """Model representing a IRIS withdraw"""
     chan = models.CharField(max_length=4, blank=True, null=True, help_text='')
-    endt = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
-    loc = models.CharField(max_length=2, blank=True, null=True, help_text='')
-    sta = models.CharField(max_length=4, blank=True, null=True, help_text='')
-    begt = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
+    end_date = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='') #datascope:endt
+    location_code = models.CharField(max_length=2, blank=True, null=True, help_text='')
+    code = models.CharField(max_length=4, blank=True, null=True, help_text='') #datascope:sta
+    start_date = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='') #datascope:t
     station = models.ForeignKey(Station, on_delete=models.CASCADE, help_text='')
 
     def __str__(self):
         """String for representing the IrisWithdraw object."""
         return self.chan
 
+################################################################################
+# IrisEpoch model
+#
 class IrisEpoch(models.Model):
     """Model representing a IRIS epoch"""
     chan = models.CharField(max_length=4, blank=True, null=True, help_text='')
     decimal = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
-    endt = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
-    loc = models.CharField(max_length=2, blank=True, null=True, help_text='')
-    sta = models.CharField(max_length=4, blank=True, null=True, help_text='')
-    begt = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='')
+    end_date = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='') #datascope:endt
+    location_code = models.CharField(max_length=2, blank=True, null=True, help_text='')
+    code = models.CharField(max_length=4, blank=True, null=True, help_text='') #datascope:sta
+    start_date = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='') #datascope:begt
     station = models.ForeignKey(Station, on_delete=models.CASCADE, help_text='')
 
     def __str__(self):
