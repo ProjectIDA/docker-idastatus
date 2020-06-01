@@ -19,6 +19,9 @@ build:			## build images and containers
 run:			## start up all containers
 	docker-compose up -d
 
+runfg:			## start up all containers in the foreground
+	docker-compose up
+
 stop:			## stop all containers
 	docker-compose stop $(SERVICELIST)
 
