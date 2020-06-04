@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>ChannelEpoch List</h1>
+  {% if channelepoch_list %}
+  <ul>
+    {% for channelepoch in channelepoch_list %}
+      <li>
+        <a href="{{ channelepoch.get_absolute_url }}">{{ channelepoch.station }}</a> ({{channelepoch.code}})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There appear to be no channelepochs in the database.</p>
+  {% endif %}       
+{% endblock %}

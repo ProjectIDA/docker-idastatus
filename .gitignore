@@ -1,3 +1,10 @@
+#SB
+*.swp
+*.swo
+*.retry
+*~
+.vscode
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -103,3 +110,11 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+db-data/
+
+# VS Code
+*.code-workspace
+
+# MacOS
+.DS_Store
