@@ -6,7 +6,7 @@
   <ul>
     {% for stage in stage_list %}
       <li>
-        <a href="{{ stage.get_absolute_url }}">{{ stage.station }}</a> ({{stage.channelepoch}}, {{stage.serial_number}})
+        ({{stage.channel_epoch}}, {{stage.serial_number}})
       </li>
     {% endfor %}
   </ul>
