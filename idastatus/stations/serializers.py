@@ -62,9 +62,14 @@ class ChannelEpochSerializer(serializers.ModelSerializer):
                   'types',
                   'azimuth',
                   'sensor',
-                  'station',
                   'dip',
                   'location_code',
+                  'station',
+                  'elevation',
+                  'latitude',
+                  'longitude',
+                  'nomfreq',
+                  'instype',
                   'stage_list',
                  )
 
