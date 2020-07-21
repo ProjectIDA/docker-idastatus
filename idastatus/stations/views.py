@@ -1,5 +1,9 @@
+# system imports
+import os
+import sys
 import textwrap
 
+# Django imports
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
@@ -7,6 +11,9 @@ from django.views.generic.base import View
 from django.views.generic import TemplateView, ListView
 
 from rest_framework import viewsets
+
+# local imports
+from .constants import *
 
 from .models import Station, Network, ChannelEpoch, Instype, IrisEpoch, IrisWithdraw, \
     Stage
@@ -31,9 +38,24 @@ def index(request):
 
     return render(request, 'index.html', context=context)
 
+def replace_end_date(obj_list):
+    c = Constants()
+    for obj in obj_list:
+        if obj.end_date >= c.BIG_END_DATE:
+            obj.end_date = None
+    return obj_list
+
 ################################################################################
 # Station classes
+################################################################################
+# In our datascope data, we use a Unix epoch date (a
+# day in 2286 as the end_date for stations, networks, and channel
+# epochs.  obspy and stationXML use Null as the end_date, so we
+# will replace our end_date below with Null in the stationXML
+# output
 #
+# the epoch date in in our Constants class
+################################################################################
 class StationListView(generic.ListView):
 
     model = Station
@@ -48,12 +70,16 @@ class StationDetailView(generic.ListView):
     serializer_class = StationSerializer
 
 class StationAPIView(viewsets.ModelViewSet):
-    queryset = Station.objects.all()
     serializer_class = StationSerializer
+
+    def get_queryset(self, **kwargs):
+        return replace_end_date(Station.objects.all())
 
 ################################################################################
 # Network classes
-#
+################################################################################
+# see the date comment in Station Classes above...
+################################################################################
 class NetworkListView(generic.ListView):
 
     model = Network
@@ -67,12 +93,16 @@ class NetworkDetailView(generic.ListView):
     serializer_class = NetworkSerializer
 
 class NetworkAPIView(viewsets.ModelViewSet):
-    queryset = Network.objects.all()
     serializer_class = NetworkSerializer
+
+    def get_queryset(self, **kwargs):
+        return replace_end_date(Network.objects.all())
 
 ################################################################################
 # ChannelEpoch classes
-#
+################################################################################
+# see the date comment in Station Classes above...
+################################################################################
 class ChannelEpochListView(generic.ListView):
 
     model = ChannelEpoch
@@ -87,8 +117,10 @@ class ChannelEpochDetailView(generic.ListView):
     serializer_class = ChannelEpochSerializer
 
 class ChannelEpochAPIView(viewsets.ModelViewSet):
-    queryset = ChannelEpoch.objects.all()
     serializer_class = ChannelEpochSerializer
+
+    def get_queryset(self, **kwargs):
+        return replace_end_date(ChannelEpoch.objects.all())
 
 ################################################################################
 # Instype classes

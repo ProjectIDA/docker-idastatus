@@ -6,9 +6,9 @@ from . import views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('stations', views.StationAPIView)
-router.register('networks', views.NetworkAPIView)
-router.register('channelepochs', views.ChannelEpochAPIView)
+router.register('stations', views.StationAPIView, 'Station')
+router.register('networks', views.NetworkAPIView, 'Network')
+router.register('channelepochs', views.ChannelEpochAPIView, 'ChannelEpoch')
 router.register('instypes', views.InsTypeAPIView)
 router.register('irisepochs', views.IrisEpochAPIView)
 router.register('iriswithdraws', views.IrisWithdrawAPIView)
