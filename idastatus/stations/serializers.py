@@ -26,7 +26,32 @@ class NetworkSerializer(serializers.ModelSerializer):
                   'end_date',
                  )
 
+class StageSerializer(serializers.ModelSerializer):
+    channel_epoch_id = serializers.PrimaryKeyRelatedField(queryset=ChannelEpoch.objects.all(), source='channel_epoch.id')
+    class Meta:
+        model = Stage
+        fields = ('id', 
+                  'channel_epoch_id',
+                  'station',
+                  'stage_ndx',
+                  'serial_number',
+                  'decimation_factor',
+                  'gnom',
+                  'gcalib',
+                  'input_units',
+                  'output_units',
+                  'decimation_input_sample_rate',
+                  'sp_dir',
+                  'sp_filename',
+                 )
+        
+    def create(self, validated_data):
+        stage = Stage.objects.create(parent=validated_data['channel_epoch']['id'], stage_name=validated_data['stage_name'])
+
+        return stage
+
 class ChannelEpochSerializer(serializers.ModelSerializer):
+    stage_list = StageSerializer(many=True, read_only=True)
     class Meta:
         model = ChannelEpoch
         fields = ('id', 
@@ -37,9 +62,15 @@ class ChannelEpochSerializer(serializers.ModelSerializer):
                   'types',
                   'azimuth',
                   'sensor',
-                  'station',
                   'dip',
                   'location_code',
+                  'station',
+                  'elevation',
+                  'latitude',
+                  'longitude',
+                  'nomfreq',
+                  'instype',
+                  'stage_list',
                  )
 
 class InsTypeSerializer(serializers.ModelSerializer):
@@ -73,22 +104,4 @@ class IrisWithdrawSerializer(serializers.ModelSerializer):
                   'location_code',
                   'code',
                   'station',
-                 )
-
-class StageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Stage
-        fields = ('id', 
-                  'channel_epoch',
-                  'station',
-                  'stage_ndx',
-                  'serial_number',
-                  'decimation_factor',
-                  'gnom',
-                  'gcalib',
-                  'input_units',
-                  'output_units',
-                  'decimation_input_sample_rate',
-                  'sp_dir',
-                  'sp_filename',
                  )
