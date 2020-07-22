@@ -63,9 +63,9 @@ class ChannelEpoch(models.Model):
     elevation = models.FloatField(default=None, blank=True, null=True, help_text='Elevation for this channel (km)') #datascope:elev
     longitude = models.FloatField(default=None, blank=True, null=True, help_text='Longitude for this channel') #datascope:lon
     latitude = models.FloatField(default=None, blank=True, null=True, help_text='Latitude for this channel') #datascope:lat
+
     def __str__(self):
         """String for representing the ChannelEpoch object."""
-         
         # Without start/end date info, this is really a Channel identifier.
         startdt = datetime.fromtimestamp(self.start_date, tz=timezone.utc)
         enddt = datetime.fromtimestamp(self.end_date, tz=timezone.utc)
@@ -80,7 +80,7 @@ class ChannelEpoch(models.Model):
 
 class Stage(models.Model):
     """Model representing a stage"""
-    channel_epoch = models.ForeignKey(ChannelEpoch, null=True, on_delete=models.CASCADE, help_text="Channel Epoch FK") # need to find out what this key points to
+    channel_epoch = models.ForeignKey(ChannelEpoch, null=True, on_delete=models.CASCADE, related_name='stage_list', help_text="Channel Epoch FK")
     station = models.ForeignKey(Station, on_delete=models.CASCADE, help_text='Station FK')
     stage_ndx = models.IntegerField(blank=True, null=True, help_text='Stage index for parent ChannelEpoch (cascade)') #datascope:stageid
     serial_number = models.CharField(max_length=16, blank=True, null=True, help_text='Serial Number (or other identifier)') #datasceop:ssident
