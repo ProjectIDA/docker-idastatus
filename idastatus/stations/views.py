@@ -38,11 +38,53 @@ def index(request):
 
     return render(request, 'index.html', context=context)
 
+################################################################################
+# Business Rules functions
+################################################################################
+# These methods will be used to adjust/convert the data in our datascope
+# database be presented differently in the API when a different format or value
+# is required
+################################################################################
+
+################################################################################
+# replace_end_date - in the datascope database we store the end_date for open
+# networks, stations, and channelepochs as an arbitrarily large constant in 
+# future.  The stationXML write method likes a value of None for open, so we 
+# make that adjustment here.
+################################################################################
 def replace_end_date(obj_list):
     c = Constants()
     for obj in obj_list:
         if obj.end_date >= c.BIG_END_DATE:
             obj.end_date = None
+    return obj_list
+
+################################################################################
+# depthToMeters - We store core depth for channelepochs in the database
+# in kilometers, obspy likes to present this value in meters
+################################################################################
+def depthToMeters(obj_list):
+    for obj in obj_list:
+        if obj.depth:
+            try:
+                float(obj.depth)
+            except ValueError:
+                print("depth is not a float")
+            obj.depth *= 1000
+    return obj_list
+
+################################################################################
+# elevationToMeters - We store station elevation in the datascope database
+# in kilometers, obspy likes to present this values in meters
+################################################################################
+def elevationToMeters(obj_list):
+    for obj in obj_list:
+        if obj.elevation:
+            try:
+                float(obj.elevation)
+            except ValueError:
+                print("elevation is not a float")
+            obj.elevation *= 1000
     return obj_list
 
 ################################################################################
@@ -54,7 +96,7 @@ def replace_end_date(obj_list):
 # will replace our end_date below with Null in the stationXML
 # output
 #
-# the epoch date in in our Constants class
+# the epoch date is in our Constants class
 ################################################################################
 class StationListView(generic.ListView):
 
@@ -73,7 +115,9 @@ class StationAPIView(viewsets.ModelViewSet):
     serializer_class = StationSerializer
 
     def get_queryset(self, **kwargs):
-        return replace_end_date(Station.objects.all())
+        staList = replace_end_date(Station.objects.all())
+        staList = elevationToMeters(staList)
+        return staList
 
 ################################################################################
 # Network classes
@@ -120,7 +164,9 @@ class ChannelEpochAPIView(viewsets.ModelViewSet):
     serializer_class = ChannelEpochSerializer
 
     def get_queryset(self, **kwargs):
-        return replace_end_date(ChannelEpoch.objects.all())
+        chanList = replace_end_date(ChannelEpoch.objects.all())
+        chanList = depthToMeters(chanList)
+        return chanList
 
 ################################################################################
 # Instype classes
