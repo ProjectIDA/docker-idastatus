@@ -6,18 +6,30 @@ from . import views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('stations', views.StationAPIView)
-router.register('networks', views.NetworkAPIView)
-router.register('channelepochs', views.ChannelEpochAPIView)
+router.register('stations', views.StationAPIView, 'Station')
+router.register('networks', views.NetworkAPIView, 'Network')
+router.register('channelepochs', views.ChannelEpochAPIView, 'ChannelEpoch')
+router.register('instypes', views.InsTypeAPIView)
+router.register('irisepochs', views.IrisEpochAPIView)
+router.register('iriswithdraws', views.IrisWithdrawAPIView)
+router.register('stages', views.StageAPIView)
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('favicon.ico', RedirectView.as_view(url='/static/images/favicon.ico')),
     path('api/', include(router.urls)),
     path('api/stations', include(router.urls)),
     path('api/networks', include(router.urls)),
     path('api/channelepochs', include(router.urls)),
-    path('favicon.ico', RedirectView.as_view(url='/static/images/favicon.ico')),
+    path('api/instypes', include(router.urls)),
+    path('api/irisepochs', include(router.urls)),
+    path('api/iriswithdraws', include(router.urls)),
+    path('api/stages', include(router.urls)),
     path('stations/', views.StationListView.as_view(), name='station-list'),
     path('networks/', views.NetworkListView.as_view(), name='network-list'),
     path('channelepochs/', views.ChannelEpochListView.as_view(), name='channelepoch-list'),
+    path('instypes/', views.InsTypeListView.as_view(), name='instype-list'),
+    path('irisepochs/', views.IrisEpochListView.as_view(), name='irisepoch-list'),
+    path('iriswithdraws/', views.IrisWithdrawListView.as_view(), name='iriswithdraw-list'),
+    path('stages/', views.StageListView.as_view(), name='stage-list'),
 ]

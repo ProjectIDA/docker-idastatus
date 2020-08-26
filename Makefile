@@ -19,6 +19,9 @@ build:			## build images and containers
 run:			## start up all containers
 	docker-compose up -d
 
+runfg:			## start up all containers in the foreground
+	docker-compose up
+
 stop:			## stop all containers
 	docker-compose stop $(SERVICELIST)
 
@@ -31,9 +34,11 @@ rmimages:		## remove all images
 
 loadfixtures:		## load fixtures into database
 	cd $(TARGETDIR)
+	docker-compose exec web python manage.py loaddata stations/fixtures/initial_instype_data.json
 	docker-compose exec web python manage.py loaddata stations/fixtures/initial_network_data.json
 	docker-compose exec web python manage.py loaddata stations/fixtures/initial_station_data.json
 	docker-compose exec web python manage.py loaddata stations/fixtures/initial_chan_data.json
+	docker-compose exec web python manage.py loaddata stations/fixtures/initial_stage_data.json
 
 execpsql:		## log into postgres with psql
 	docker exec -it dockeridastatus_db_1 psql idastatus idadb
