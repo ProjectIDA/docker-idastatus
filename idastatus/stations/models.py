@@ -64,7 +64,7 @@ class Stage(models.Model):
     decimation_factor = models.BigIntegerField() #datascope:decifac
     data_file_name = models.CharField(max_length=64, blank=True, null=True, help_text='') #datascope: dfile
     data_dir = models.CharField(max_length=128, blank=True, null=True, help_text='') #datascope: dir
-    stage_gain = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='') #datascope:gcalib*gnome
+    stage_gain = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='') #datascope:gcalib*gnom
     input_units = models.CharField(max_length=200, blank=True, null=True, help_text='') #datascope:iunits
     output_units = models.CharField(max_length=200, blank=True, null=True, help_text='') #datascope:ounits
     decimation_input_sample_rate = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='') #datascope:srate
