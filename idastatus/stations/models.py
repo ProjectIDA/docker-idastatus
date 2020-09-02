@@ -85,6 +85,9 @@ class Stage(models.Model):
     stage_ndx = models.IntegerField(blank=True, null=True, help_text='Stage index for parent ChannelEpoch (cascade)') #datascope:stageid
     serial_number = models.CharField(max_length=16, blank=True, null=True, help_text='Serial Number (or other identifier)') #datasceop:ssident
     decimation_factor = models.BigIntegerField() #datascope:decifac
+    data_file_name = models.CharField(max_length=64, blank=True, null=True, help_text='') #datascope: dfile
+    data_dir = models.CharField(max_length=128, blank=True, null=True, help_text='') #datascope: dir
+    stage_gain = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='') #datascope:gcalib*gnom
     gnom = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='Nominal sensitivity') #datascope:gnom
     gcalib = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='Calibration sensitivity factor') #datascope:gcalib
     input_units = models.CharField(max_length=200, blank=True, null=True, help_text='') #datascope:iunits
