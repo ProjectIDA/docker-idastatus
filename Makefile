@@ -46,5 +46,5 @@ execpsql:		## log into postgres with psql
 execsh:			## log into web container
 	docker exec -it dockeridastatus_web_1 bash
 
-sanitycheck:		## log into web container
+sanitycheck:		## perform a basic curl to test API
 	curl http://localhost:8000/api/stations/?format=json
