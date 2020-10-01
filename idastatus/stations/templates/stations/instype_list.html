@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Instype List</h1>
+  {% if instype_list %}
+  <ul>
+    {% for instype in instype_list %}
+      <li>
+        {{ instype.abbrev }} - {{ instype.description }}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There appear to be no instypes in the database.</p>
+  {% endif %}       
+{% endblock %}

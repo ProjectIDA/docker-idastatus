@@ -1,7 +1,9 @@
 from django.db import models
 from datetime import datetime, timezone
 
-# Create your models here.
+"""
+    Create your models here.
+"""
 
 class Network(models.Model):
     code = models.CharField(max_length=4, blank=True,
@@ -115,9 +117,9 @@ class IrisWithdraw(models.Model):
         """String for representing the IrisWithdraw object."""
         return self.chan
 
-################################################################################
-# IrisEpoch model
-#
+"""
+    IrisEpoch model
+"""
 class IrisEpoch(models.Model):
     """Model representing a IRIS epoch"""
     chan = models.CharField(max_length=4, blank=True, null=True, help_text='')
@@ -131,3 +133,17 @@ class IrisEpoch(models.Model):
     def __str__(self):
         """String for representing the IrisEpoch object."""
         return self.chan
+
+"""
+    Unit model
+"""
+class Unit(models.Model):
+    """Model representing units"""
+    unit = models.CharField(
+        max_length=100, blank=True, null=True, help_text='Unit name')
+    description = models.CharField(
+        max_length=100, blank=True, null=True, help_text='Unit description')
+
+    def __str__(self):
+        """String for representing the Unit object."""
+        return self.unit
