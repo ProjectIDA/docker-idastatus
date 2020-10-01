@@ -18,7 +18,7 @@ COPY requirements.txt /ida/code/
 
 RUN pip install --upgrade pip
 
-RUN pip install -r requirements.txt
+RUN pip install --trusted-host pypy.org --trusted-host files.pythonhosted.org -r requirements.txt
 
 COPY . /ida/code/
 
