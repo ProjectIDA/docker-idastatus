@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Station, Network, ChannelEpoch, Instype, IrisEpoch, \
-    IrisWithdraw, Stage
+    IrisWithdraw, Stage, Unit
 
 class StationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -104,4 +104,12 @@ class IrisWithdrawSerializer(serializers.ModelSerializer):
                   'location_code',
                   'code',
                   'station',
+                 )
+
+class UnitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Unit
+        fields = ('id', 
+                  'unit',
+                  'description',
                  )
