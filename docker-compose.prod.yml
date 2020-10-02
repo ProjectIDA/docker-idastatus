@@ -1,0 +1,59 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:11.2
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports: 
+      - "5432"
+    environment:
+      - POSTGRES_DB=idastatus
+      - POSTGRES_USER=idadb
+      - POSTGRES_PASSWORD=CHANGE_THIS_BEFORE_RUNNING
+
+  web:
+    hostname: web
+    build: 
+      context: ./idastatus
+
+    #command: ./wait-for db:5432 -- echo "doing runserver"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn --certfile=/etc/ssl/private/idastatus-dev_ucsd_edu_chain.cer --keyfile=/etc/ssl/private/idastatus-dev_ucsd_edu.key idastatus.wsgi --bind 0.0.0.0:8000"    
+    depends_on:
+      - db
+
+    expose:
+      - "8000"
+    volumes:
+      - ./idastatus:/ida/code/
+      - /etc/pki/tls/private/idastatus-dev_ucsd_edu.key:/etc/ssl/private/idastatus-dev_ucsd_edu.key:ro
+      - /etc/pki/tls/certs/idastatus-dev_ucsd_edu_chain.cer:/etc/ssl/private/idastatus-dev_ucsd_edu_chain.cer:ro
+
+    links:
+      - db
+
+# this service provides the proxy to https connection
+  web_proxies:
+    image: nginx
+    volumes:
+      - ./nginx/nginx_prod:/etc/nginx:ro
+      - /etc/pki/tls/private/idastatus-dev_ucsd_edu.key:/etc/ssl/private/idastatus-dev_ucsd_edu.key:ro
+      - /etc/pki/tls/certs/idastatus-dev_ucsd_edu_chain.cer:/etc/ssl/private/idastatus-dev_ucsd_edu_chain.cer:ro
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - "web"
+
+# this service will use same image, and once the migration is done it will be stopped
+  web_migrations:
+    build: 
+      context: ./idastatus
+
+    command: ["./wait-for-postgres.sh", "db", "idadb", "CHANGE_THIS_BEFORE_RUNNING", "python manage.py migrate"]
+    depends_on:
+      - db
+
+volumes:
+  db-data:
+    driver: local
