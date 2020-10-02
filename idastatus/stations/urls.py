@@ -13,6 +13,7 @@ router.register('instypes', views.InsTypeAPIView)
 router.register('irisepochs', views.IrisEpochAPIView)
 router.register('iriswithdraws', views.IrisWithdrawAPIView)
 router.register('stages', views.StageAPIView)
+router.register('units', views.UnitAPIView)
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -25,6 +26,7 @@ urlpatterns = [
     path('api/irisepochs', include(router.urls)),
     path('api/iriswithdraws', include(router.urls)),
     path('api/stages', include(router.urls)),
+    path('api/units', include(router.urls)),
     path('stations/', views.StationListView.as_view(), name='station-list'),
     path('networks/', views.NetworkListView.as_view(), name='network-list'),
     path('channelepochs/', views.ChannelEpochListView.as_view(), name='channelepoch-list'),
@@ -32,4 +34,5 @@ urlpatterns = [
     path('irisepochs/', views.IrisEpochListView.as_view(), name='irisepoch-list'),
     path('iriswithdraws/', views.IrisWithdrawListView.as_view(), name='iriswithdraw-list'),
     path('stages/', views.StageListView.as_view(), name='stage-list'),
+    path('units/', views.UnitListView.as_view(), name='unit-list'),
 ]

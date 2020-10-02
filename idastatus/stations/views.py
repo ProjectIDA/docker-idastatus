@@ -16,9 +16,10 @@ from rest_framework import viewsets
 from .constants import *
 
 from .models import Station, Network, ChannelEpoch, Instype, IrisEpoch, IrisWithdraw, \
-    Stage
+    Stage, Unit
 from .serializers import StationSerializer, NetworkSerializer, ChannelEpochSerializer, \
-    InsTypeSerializer, IrisEpochSerializer, IrisWithdrawSerializer, StageSerializer
+    InsTypeSerializer, IrisEpochSerializer, IrisWithdrawSerializer, StageSerializer, \
+    UnitSerializer
 
 # Create your views here.
 def index(request):
@@ -26,17 +27,36 @@ def index(request):
 
     num_networks = Network.objects.all().count()
     num_stations = Station.objects.all().count()
+    num_instypes = Instype.objects.all().count()
     num_channelepochs = ChannelEpoch.objects.all().count()
     num_stages = Stage.objects.all().count()
+    num_units = Unit.objects.all().count()
 
     context = {
         'num_networks': num_networks,
         'num_stations': num_stations,
+        'num_instypes': num_instypes,
         'num_channelepochs': num_channelepochs,
         'num_stages': num_stages,
+        'num_units': num_units,
     }
 
     return render(request, 'index.html', context=context)
+
+"""
+  Business Rules functions
+
+  These methods will be used to adjust/convert the data in our datascope
+  database be presented differently in the API when a different format or value
+  is required
+"""
+
+"""
+  replace_end_date - in the datascope database we store the end_date for open
+  networks, stations, and channelepochs as an arbitrarily large constant in 
+  future.  The stationXML write method likes a value of None for open, so we 
+  make that adjustment here.
+"""
 
 def replace_end_date(obj_list):
     c = Constants()
@@ -45,17 +65,45 @@ def replace_end_date(obj_list):
             obj.end_date = None
     return obj_list
 
-################################################################################
-# Station classes
-################################################################################
-# In our datascope data, we use a Unix epoch date (a
-# day in 2286 as the end_date for stations, networks, and channel
-# epochs.  obspy and stationXML use Null as the end_date, so we
-# will replace our end_date below with Null in the stationXML
-# output
-#
-# the epoch date in in our Constants class
-################################################################################
+"""
+  depthToMeters - We store core depth for channelepochs in the database
+  in kilometers, obspy likes to present this value in meters
+"""
+def depthToMeters(obj_list):
+    for obj in obj_list:
+        if obj.depth:
+            try:
+                float(obj.depth)
+            except ValueError:
+                print("depth is not a float")
+            obj.depth *= 1000
+    return obj_list
+
+"""
+  elevationToMeters - We store station elevation in the datascope database
+  in kilometers, obspy likes to present this values in meters
+"""
+def elevationToMeters(obj_list):
+    for obj in obj_list:
+        if obj.elevation:
+            try:
+                float(obj.elevation)
+            except ValueError:
+                print("elevation is not a float")
+            obj.elevation *= 1000
+    return obj_list
+
+"""
+  Station classes
+
+  In our datascope data, we use a Unix epoch date (a
+  day in 2286 as the end_date for stations, networks, and channel
+  epochs.  obspy and stationXML use Null as the end_date, so we
+  will replace our end_date below with Null in the stationXML
+  output
+ 
+  the epoch date is in our Constants class
+"""
 class StationListView(generic.ListView):
 
     model = Station
@@ -73,13 +121,15 @@ class StationAPIView(viewsets.ModelViewSet):
     serializer_class = StationSerializer
 
     def get_queryset(self, **kwargs):
-        return replace_end_date(Station.objects.all())
+        staList = replace_end_date(Station.objects.all())
+        staList = elevationToMeters(staList)
+        return staList
 
-################################################################################
-# Network classes
-################################################################################
-# see the date comment in Station Classes above...
-################################################################################
+"""
+  Network classes
+
+  see the date comment in Station Classes above...
+"""
 class NetworkListView(generic.ListView):
 
     model = Network
@@ -98,11 +148,11 @@ class NetworkAPIView(viewsets.ModelViewSet):
     def get_queryset(self, **kwargs):
         return replace_end_date(Network.objects.all())
 
-################################################################################
-# ChannelEpoch classes
-################################################################################
-# see the date comment in Station Classes above...
-################################################################################
+"""
+  ChannelEpoch classes
+
+  see the date comment in Station Classes above...
+"""
 class ChannelEpochListView(generic.ListView):
 
     model = ChannelEpoch
@@ -120,11 +170,13 @@ class ChannelEpochAPIView(viewsets.ModelViewSet):
     serializer_class = ChannelEpochSerializer
 
     def get_queryset(self, **kwargs):
-        return replace_end_date(ChannelEpoch.objects.all())
+        chanList = replace_end_date(ChannelEpoch.objects.all())
+        chanList = depthToMeters(chanList)
+        return chanList
 
-################################################################################
-# Instype classes
-#
+"""
+  Instype classes
+"""
 class InsTypeListView(generic.ListView):
 
     model = Instype
@@ -142,9 +194,9 @@ class InsTypeAPIView(viewsets.ModelViewSet):
     queryset = Instype.objects.all()
     serializer_class = InsTypeSerializer
 
-################################################################################
-# IrisEpoch classes
-#
+"""
+  IrisEpoch classes
+"""
 class IrisEpochListView(generic.ListView):
 
     model = IrisEpoch
@@ -162,9 +214,9 @@ class IrisEpochAPIView(viewsets.ModelViewSet):
     queryset = IrisEpoch.objects.all()
     serializer_class = IrisEpochSerializer
 
-################################################################################
-# IrisWithdraw classes
-#
+"""
+  IrisWithdraw classes
+"""
 class IrisWithdrawListView(generic.ListView):
 
     model = IrisWithdraw
@@ -182,9 +234,9 @@ class IrisWithdrawAPIView(viewsets.ModelViewSet):
     queryset = IrisWithdraw.objects.all()
     serializer_class = IrisWithdrawSerializer
 
-################################################################################
-# Stage classes
-#
+"""
+  Stage classes
+"""
 class StageListView(generic.ListView):
 
     model = Stage
@@ -202,3 +254,22 @@ class StageAPIView(viewsets.ModelViewSet):
     queryset = Stage.objects.all()
     serializer_class = StageSerializer
 
+"""
+  Unit classes
+"""
+class UnitListView(generic.ListView):
+
+    model = Unit
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get the context
+        context = super(UnitListView, self).get_context_data(**kwargs)
+        return context
+    
+class UnitDetailView(generic.ListView):
+    queryset = Unit.objects.all()
+    serializer_class = UnitSerializer
+
+class UnitAPIView(viewsets.ModelViewSet):
+    queryset = Unit.objects.all()
+    serializer_class = UnitSerializer

@@ -1,7 +1,9 @@
 from django.db import models
 from datetime import datetime, timezone
 
-# Create your models here.
+"""
+    Create your models here.
+"""
 
 class Network(models.Model):
     code = models.CharField(max_length=4, blank=True,
@@ -85,6 +87,9 @@ class Stage(models.Model):
     stage_ndx = models.IntegerField(blank=True, null=True, help_text='Stage index for parent ChannelEpoch (cascade)') #datascope:stageid
     serial_number = models.CharField(max_length=16, blank=True, null=True, help_text='Serial Number (or other identifier)') #datasceop:ssident
     decimation_factor = models.BigIntegerField() #datascope:decifac
+    data_file_name = models.CharField(max_length=64, blank=True, null=True, help_text='') #datascope: dfile
+    data_dir = models.CharField(max_length=128, blank=True, null=True, help_text='') #datascope: dir
+    stage_gain = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='') #datascope:gcalib*gnom
     gnom = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='Nominal sensitivity') #datascope:gnom
     gcalib = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='Calibration sensitivity factor') #datascope:gcalib
     input_units = models.CharField(max_length=200, blank=True, null=True, help_text='') #datascope:iunits
@@ -112,9 +117,9 @@ class IrisWithdraw(models.Model):
         """String for representing the IrisWithdraw object."""
         return self.chan
 
-################################################################################
-# IrisEpoch model
-#
+"""
+    IrisEpoch model
+"""
 class IrisEpoch(models.Model):
     """Model representing a IRIS epoch"""
     chan = models.CharField(max_length=4, blank=True, null=True, help_text='')
@@ -128,3 +133,17 @@ class IrisEpoch(models.Model):
     def __str__(self):
         """String for representing the IrisEpoch object."""
         return self.chan
+
+"""
+    Unit model
+"""
+class Unit(models.Model):
+    """Model representing units"""
+    unit = models.CharField(
+        max_length=100, blank=True, null=True, help_text='Unit name')
+    description = models.CharField(
+        max_length=100, blank=True, null=True, help_text='Unit description')
+
+    def __str__(self):
+        """String for representing the Unit object."""
+        return self.unit

@@ -13,22 +13,35 @@ services:
       - POSTGRES_PASSWORD=CHANGE_THIS_BEFORE_RUNNING
 
   web:
+    hostname: web
     build: 
       context: ./idastatus
 
     #command: ./wait-for db:5432 -- echo "doing runserver"
-    command: ["./wait-for-postgres.sh", "db", "idadb", "CHANGE_THIS_BEFORE_RUNNING", "python manage.py runserver 0.0.0.0:8000"]
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn --certfile=/etc/ssl/private/localhost.crt --keyfile=/etc/ssl/private/localhost.key idastatus.wsgi --bind 0.0.0.0:8000"    
     depends_on:
       - db
 
+    expose:
+      - "8000"
     volumes:
       - ./idastatus:/ida/code/
-
-    ports:
-      - "8000:8000"
+      - ./../QC_FILES/ssl/private:/etc/ssl/private:ro
 
     links:
       - db
+
+# this service provides the proxy to https connection
+  web_proxies:
+    image: nginx
+    volumes:
+      - ./nginx/nginx_dev:/etc/nginx:ro
+      - ./../QC_FILES/ssl/private:/etc/ssl/private:ro
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - "web"
 
 # this service will use same image, and once the migration is done it will be stopped
   web_migrations:
