@@ -2,7 +2,7 @@
 
 echo "You will be prompted for a password that will be automatically"
 echo "inserted into the following files: "
-echo "      docker-compose.yml"
+echo "      docker-compose.prod"
 echo "      idastatus/init.sql"
 echo "      idastatus/idastatus/settings.py"
 
@@ -11,12 +11,12 @@ echo -n "Enter new password: "
 read NEWPASSWD
 
 echo ""
-echo "Updating docker-compose.yml"
-sed -i -e "s/CHANGE_THIS_BEFORE_RUNNING/$NEWPASSWD/" docker-compose.yml
+echo "Updating docker-compose.prod.yml"
+sed -i -e "s/CHANGE_THIS_BEFORE_RUNNING/$NEWPASSWD/" docker-compose.prod.yml
 retval=$?
 if [ $retval -ne 0 ];
 then
-    echo "FAILED! while updating docker-compose.yml"
+    echo "FAILED! while updating docker-compose.prod.yml"
     exit
 fi
 
