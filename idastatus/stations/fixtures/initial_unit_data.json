@@ -4,7 +4,7 @@
       "pk": 1,
       "fields": {
          "unit": "A",
-         "desc": "Amperes"
+         "description": "Amperes"
       }
    },
    {
@@ -12,7 +12,7 @@
       "pk": 2,
       "fields": {
          "unit": "COUNTS",
-         "desc": "Digital Counts"
+         "description": "Digital Counts"
       }
    },
    {
@@ -20,7 +20,7 @@
       "pk": 3,
       "fields": {
          "unit": "M",
-         "desc": "Displacement in Meters"
+         "description": "Displacement in Meters"
       }
    },
    {
@@ -28,7 +28,7 @@
       "pk": 4,
       "fields": {
          "unit": "M/S",
-         "desc": "Velocity in Meters Per Second"
+         "description": "Velocity in Meters Per Second"
       }
    },
    {
@@ -36,7 +36,7 @@
       "pk": 5,
       "fields": {
          "unit": "M/S**2",
-         "desc": "Acceleration in Meters Per Second Per Second"
+         "description": "Acceleration in Meters Per Second Per Second"
       }
    },
    {
@@ -44,7 +44,7 @@
       "pk": 6,
       "fields": {
          "unit": "MS",
-         "desc": "Milliseconds"
+         "description": "Milliseconds"
       }
    },
    {
@@ -52,7 +52,7 @@
       "pk": 7,
       "fields": {
          "unit": "V",
-         "desc": "Volts"
+         "description": "Volts"
       }
    },
    {
@@ -60,7 +60,7 @@
       "pk": 8,
       "fields": {
          "unit": "PA",
-         "desc": "Pressure in Pascals"
+         "description": "Pressure in Pascals"
       }
    },
    {
@@ -68,7 +68,7 @@
       "pk": 9,
       "fields": {
          "unit": "M/M",
-         "desc": "Strain"
+         "description": "Strain"
       }
    },
    {
@@ -76,7 +76,7 @@
       "pk": 10,
       "fields": {
          "unit": "T",
-         "desc": "Magnetic field in Teslas"
+         "description": "Magnetic field in Teslas"
       }
    },
    {
@@ -84,7 +84,7 @@
       "pk": 11,
       "fields": {
          "unit": "US",
-         "desc": "Microseconds"
+         "description": "Microseconds"
       }
    },
    {
@@ -92,7 +92,7 @@
       "pk": 12,
       "fields": {
          "unit": "PERCENT",
-         "desc": "Percent"
+         "description": "Percent"
       }
    },
    {
@@ -100,7 +100,7 @@
       "pk": 13,
       "fields": {
          "unit": "RADIAN",
-         "desc": "Radian"
+         "description": "Radian"
       }
    },
    {
@@ -108,7 +108,7 @@
       "pk": 14,
       "fields": {
          "unit": "DEGREES",
-         "desc": "Direction in Degrees"
+         "description": "Direction in Degrees"
       }
    },
    {
@@ -116,7 +116,7 @@
       "pk": 15,
       "fields": {
          "unit": "MM/HR",
-         "desc": "Millimeters per hour"
+         "description": "Millimeters per hour"
       }
    },
    {
@@ -124,7 +124,7 @@
       "pk": 16,
       "fields": {
          "unit": "H/CM2/HR",
-         "desc": "Hits per square cm per hour"
+         "description": "Hits per square cm per hour"
       }
    },
    {
@@ -132,7 +132,7 @@
       "pk": 17,
       "fields": {
          "unit": "C",
-         "desc": "Degrees Celsius"
+         "description": "Degrees Celsius"
       }
    }
 ]
