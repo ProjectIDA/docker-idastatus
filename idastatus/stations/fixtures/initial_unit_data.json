@@ -11,7 +11,7 @@
       "model": "stations.unit",
       "pk": 2,
       "fields": {
-         "unit": "COUNTS",
+         "unit": "counts",
          "description": "Digital Counts"
       }
    },
@@ -19,7 +19,7 @@
       "model": "stations.unit",
       "pk": 3,
       "fields": {
-         "unit": "M",
+         "unit": "m",
          "description": "Displacement in Meters"
       }
    },
@@ -27,7 +27,7 @@
       "model": "stations.unit",
       "pk": 4,
       "fields": {
-         "unit": "M/S",
+         "unit": "m/s",
          "description": "Velocity in Meters Per Second"
       }
    },
@@ -35,7 +35,7 @@
       "model": "stations.unit",
       "pk": 5,
       "fields": {
-         "unit": "M/S**2",
+         "unit": "m/s**2",
          "description": "Acceleration in Meters Per Second Per Second"
       }
    },
@@ -43,7 +43,7 @@
       "model": "stations.unit",
       "pk": 6,
       "fields": {
-         "unit": "MS",
+         "unit": "ms",
          "description": "Milliseconds"
       }
    },
@@ -59,7 +59,7 @@
       "model": "stations.unit",
       "pk": 8,
       "fields": {
-         "unit": "PA",
+         "unit": "Pa",
          "description": "Pressure in Pascals"
       }
    },
@@ -67,7 +67,7 @@
       "model": "stations.unit",
       "pk": 9,
       "fields": {
-         "unit": "M/M",
+         "unit": "m/m",
          "description": "Strain"
       }
    },
@@ -83,7 +83,7 @@
       "model": "stations.unit",
       "pk": 11,
       "fields": {
-         "unit": "US",
+         "unit": "us",
          "description": "Microseconds"
       }
    },
@@ -91,7 +91,7 @@
       "model": "stations.unit",
       "pk": 12,
       "fields": {
-         "unit": "PERCENT",
+         "unit": "percent",
          "description": "Percent"
       }
    },
@@ -99,7 +99,7 @@
       "model": "stations.unit",
       "pk": 13,
       "fields": {
-         "unit": "RADIAN",
+         "unit": "radian",
          "description": "Radian"
       }
    },
@@ -115,7 +115,7 @@
       "model": "stations.unit",
       "pk": 15,
       "fields": {
-         "unit": "MM/HR",
+         "unit": "mm/hr",
          "description": "Millimeters per hour"
       }
    },
@@ -123,7 +123,7 @@
       "model": "stations.unit",
       "pk": 16,
       "fields": {
-         "unit": "H/CM2/HR",
+         "unit": "h/cm2/hr",
          "description": "Hits per square cm per hour"
       }
    },
