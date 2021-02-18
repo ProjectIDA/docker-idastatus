@@ -43,6 +43,7 @@ loadfixtures:		## load fixtures into database
 	docker-compose --file $(DOCKERCOMPOSEFILE) exec web python manage.py loaddata stations/fixtures/initial_station_data.json
 	docker-compose --file $(DOCKERCOMPOSEFILE) exec web python manage.py loaddata stations/fixtures/initial_chan_data.json
 	docker-compose --file $(DOCKERCOMPOSEFILE) exec web python manage.py loaddata stations/fixtures/initial_stage_data.json
+	docker-compose --file $(DOCKERCOMPOSEFILE) exec web python manage.py loaddata stations/fixtures/initial_unit_data.json
 
 execpsql:		## log into postgres with psql
 	docker exec -it dockeridastatus_db_1 psql idastatus idadb
@@ -52,3 +53,6 @@ execsh:			## log into web container
 
 sanitycheck:		## perform a basic curl to test API
 	curl http://localhost:8000/api/stations/?format=json
+
+httpsanitycheck:       ## perform a basic curl to test the http API
+	curl https://localhost:8000/api/stations/?format=json
