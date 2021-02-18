@@ -3,11 +3,11 @@ binaryornot==0.4.4
 certifi==2019.3.9
 chardet==3.0.4
 Click==7.0
-Django==2.2.16
+Django==2.2.18
 future==0.17.1
 gunicorn==20.0.4
 idna==2.8
-Jinja2==2.10.1
+Jinja2==2.11.3
 jinja2-time==0.2.0
 MarkupSafe==1.1.1
 poyo==0.4.2
