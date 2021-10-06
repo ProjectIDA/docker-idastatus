@@ -3,7 +3,7 @@ binaryornot==0.4.4
 certifi==2019.3.9
 chardet==3.0.4
 Click==7.0
-Django==2.2.21
+Django==2.2.22
 future==0.17.1
 gunicorn==20.0.4
 idna==2.8
@@ -16,7 +16,7 @@ python-dateutil==2.8.0
 pytz==2019.1
 requests==2.22.0
 six==1.12.0
-sqlparse==0.3.0
+sqlparse==0.4.2
 urllib3==1.26.5
 whichcraft==0.5.2
 djangorestframework==3.11.2
