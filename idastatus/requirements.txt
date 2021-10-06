@@ -17,7 +17,7 @@ pytz==2019.1
 requests==2.26
 six==1.12.0
 sqlparse==0.3.0
-urllib3==1.26
+urllib3==1.26.4
 whichcraft==0.5.2
 djangorestframework==3.11.2
 django-cors-headers==3.2.0
