@@ -4,47 +4,47 @@
       "pk": 1,
       "fields": {
          "unit": "A",
-         "description": "Amperes"
+         "desc": "Amperes"
       }
    },
    {
       "model": "stations.unit",
       "pk": 2,
       "fields": {
-         "unit": "counts",
-         "description": "Digital Counts"
+         "unit": "COUNTS",
+         "desc": "Digital Counts"
       }
    },
    {
       "model": "stations.unit",
       "pk": 3,
       "fields": {
-         "unit": "m",
-         "description": "Displacement in Meters"
+         "unit": "M",
+         "desc": "Displacement in Meters"
       }
    },
    {
       "model": "stations.unit",
       "pk": 4,
       "fields": {
-         "unit": "m/s",
-         "description": "Velocity in Meters Per Second"
+         "unit": "M/S",
+         "desc": "Velocity in Meters Per Second"
       }
    },
    {
       "model": "stations.unit",
       "pk": 5,
       "fields": {
-         "unit": "m/s**2",
-         "description": "Acceleration in Meters Per Second Per Second"
+         "unit": "M/S**2",
+         "desc": "Acceleration in Meters Per Second Per Second"
       }
    },
    {
       "model": "stations.unit",
       "pk": 6,
       "fields": {
-         "unit": "ms",
-         "description": "Milliseconds"
+         "unit": "MS",
+         "desc": "Milliseconds"
       }
    },
    {
@@ -52,23 +52,23 @@
       "pk": 7,
       "fields": {
          "unit": "V",
-         "description": "Volts"
+         "desc": "Volts"
       }
    },
    {
       "model": "stations.unit",
       "pk": 8,
       "fields": {
-         "unit": "Pa",
-         "description": "Pressure in Pascals"
+         "unit": "PA",
+         "desc": "Pressure in Pascals"
       }
    },
    {
       "model": "stations.unit",
       "pk": 9,
       "fields": {
-         "unit": "m/m",
-         "description": "Strain"
+         "unit": "M/M",
+         "desc": "Strain"
       }
    },
    {
@@ -76,31 +76,31 @@
       "pk": 10,
       "fields": {
          "unit": "T",
-         "description": "Magnetic field in Teslas"
+         "desc": "Magnetic field in Teslas"
       }
    },
    {
       "model": "stations.unit",
       "pk": 11,
       "fields": {
-         "unit": "us",
-         "description": "Microseconds"
+         "unit": "US",
+         "desc": "Microseconds"
       }
    },
    {
       "model": "stations.unit",
       "pk": 12,
       "fields": {
-         "unit": "percent",
-         "description": "Percent"
+         "unit": "PERCENT",
+         "desc": "Percent"
       }
    },
    {
       "model": "stations.unit",
       "pk": 13,
       "fields": {
-         "unit": "radian",
-         "description": "Radian"
+         "unit": "RADIAN",
+         "desc": "Radian"
       }
    },
    {
@@ -108,23 +108,23 @@
       "pk": 14,
       "fields": {
          "unit": "DEGREES",
-         "description": "Direction in Degrees"
+         "desc": "Direction in Degrees"
       }
    },
    {
       "model": "stations.unit",
       "pk": 15,
       "fields": {
-         "unit": "mm/hr",
-         "description": "Millimeters per hour"
+         "unit": "MM/HR",
+         "desc": "Millimeters per hour"
       }
    },
    {
       "model": "stations.unit",
       "pk": 16,
       "fields": {
-         "unit": "h/cm2/hr",
-         "description": "Hits per square cm per hour"
+         "unit": "H/CM2/HR",
+         "desc": "Hits per square cm per hour"
       }
    },
    {
@@ -132,7 +132,7 @@
       "pk": 17,
       "fields": {
          "unit": "C",
-         "description": "Degrees Celsius"
+         "desc": "Degrees Celsius"
       }
    }
 ]
