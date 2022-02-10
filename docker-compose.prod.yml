@@ -2,7 +2,7 @@ version: '3'
 
 services:
   db:
-    image: postgres:11.2
+    image: postgres:11.14
     volumes:
       - db-data:/var/lib/postgresql/data
     ports: 
@@ -18,7 +18,7 @@ services:
       context: ./idastatus
 
     #command: ./wait-for db:5432 -- echo "doing runserver"
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn --certfile=/etc/ssl/private/idastatus-dev_ucsd_edu_chain.cer --keyfile=/etc/ssl/private/idastatus-dev_ucsd_edu.key idastatus.wsgi --bind 0.0.0.0:8000"    
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn --certfile=/etc/ssl/private/idastatus-dev_ucsd_edu_chain.cer --keyfile=/etc/ssl/private/idastatus-dev_ucsd_edu.key idastatus.wsgi --bind 0.0.0.0:8000  --timeout 3000"    
     depends_on:
       - db
 
