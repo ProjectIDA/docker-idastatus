@@ -12,12 +12,12 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='stage',
-            name='data_dir',
+            name='dir',
             field=models.CharField(blank=True, max_length=128, null=True),
         ),
         migrations.AddField(
             model_name='stage',
-            name='data_file_name',
+            name='dfile',
             field=models.CharField(blank=True, max_length=64, null=True),
         ),
         migrations.AddField(
