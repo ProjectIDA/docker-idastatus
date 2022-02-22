@@ -42,6 +42,7 @@ class StageSerializer(serializers.ModelSerializer):
                   'output_units',
                   'izero',
                   'decimation_input_sample_rate',
+                  'leading_factor',
                   'sp_dir',
                   'sp_filename',
                  )

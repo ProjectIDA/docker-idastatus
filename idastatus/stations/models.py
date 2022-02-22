@@ -94,6 +94,7 @@ class Stage(models.Model):
     output_units = models.CharField(max_length=200, blank=True, null=True, help_text='') #datascope:ounits
     izero = models.IntegerField(blank=True, null=True, help_text='index of FIR coeff. for 0th sample') #datascope:izero
     decimation_input_sample_rate = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='') #datascope:srate
+    leading_factor = models.FloatField(default=None, blank=True, null=True, help_text='Leading Factor') #datascope:leadfac
 
     # 'sp': signal processing. Couldn't think of anything better since there are different types of files referenced here
     sp_dir = models.CharField(max_length=128, blank=True, null=True, help_text='') #datascope: dir
