@@ -87,14 +87,14 @@ class Stage(models.Model):
     stageid = models.IntegerField(blank=True, null=True, help_text='Stage index for parent ChannelEpoch (cascade)') #datascope:stageid
     ssident = models.CharField(max_length=16, blank=True, null=True, help_text='Serial Number (or other identifier)') #datasceop:ssident
     decimation_factor = models.BigIntegerField() #datascope:decifac
-    stage_gain = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='') #datascope:gcalib*gnom
-    gnom = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='Nominal sensitivity') #datascope:gnom
-    gcalib = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='Calibration sensitivity factor') #datascope:gcalib
+    stage_gain = models.DecimalField(max_digits=18, decimal_places=8, blank=True, null=True, help_text='') #datascope:gcalib*gnom
+    gnom = models.DecimalField(max_digits=25, decimal_places=8, blank=True, null=True, help_text='Nominal sensitivity') #datascope:gnom
+    gcalib = models.DecimalField(max_digits=18, decimal_places=8, blank=True, null=True, help_text='Calibration sensitivity factor') #datascope:gcalib
     input_units = models.CharField(max_length=200, blank=True, null=True, help_text='') #datascope:iunits
     output_units = models.CharField(max_length=200, blank=True, null=True, help_text='') #datascope:ounits
     izero = models.IntegerField(blank=True, null=True, help_text='index of FIR coeff. for 0th sample') #datascope:izero
-    decimation_input_sample_rate = models.DecimalField(max_digits=17, decimal_places=5, blank=True, null=True, help_text='') #datascope:srate
-    leading_factor = models.FloatField(default=None, blank=True, null=True, help_text='Leading Factor') #datascope:leadfac
+    decimation_input_sample_rate = models.DecimalField(max_digits=18, decimal_places=8, blank=True, null=True, help_text='') #datascope:srate
+    leading_factor = models.DecimalField(max_digits=35, decimal_places=9, default=None, blank=True, null=True, help_text='Leading Factor') #datascope:leadfac
 
     # 'sp': signal processing. Couldn't think of anything better since there are different types of files referenced here
     sp_dir = models.CharField(max_length=128, blank=True, null=True, help_text='') #datascope: dir
