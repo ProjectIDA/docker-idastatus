@@ -3,7 +3,7 @@
       "model": "stations.unit",
       "pk": 1,
       "fields": {
-         "unit": "A",
+         "unit": "a",
          "description": "Amperes"
       }
    },
@@ -51,7 +51,7 @@
       "model": "stations.unit",
       "pk": 7,
       "fields": {
-         "unit": "V",
+         "unit": "v",
          "description": "Volts"
       }
    },
@@ -59,7 +59,7 @@
       "model": "stations.unit",
       "pk": 8,
       "fields": {
-         "unit": "Pa",
+         "unit": "pa",
          "description": "Pressure in Pascals"
       }
    },
@@ -75,7 +75,7 @@
       "model": "stations.unit",
       "pk": 10,
       "fields": {
-         "unit": "T",
+         "unit": "t",
          "description": "Magnetic field in Teslas"
       }
    },
@@ -107,7 +107,7 @@
       "model": "stations.unit",
       "pk": 14,
       "fields": {
-         "unit": "DEGREES",
+         "unit": "degrees",
          "description": "Direction in Degrees"
       }
    },
@@ -131,7 +131,7 @@
       "model": "stations.unit",
       "pk": 17,
       "fields": {
-         "unit": "C",
+         "unit": "c",
          "description": "Degrees Celsius"
       }
    }

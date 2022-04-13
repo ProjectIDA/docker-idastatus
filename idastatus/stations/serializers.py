@@ -33,22 +33,24 @@ class StageSerializer(serializers.ModelSerializer):
         fields = ('id', 
                   'channel_epoch_id',
                   'station',
-                  'stage_ndx',
-                  'serial_number',
+                  'stageid',
+                  'ssident',
                   'decimation_factor',
                   'gnom',
                   'gcalib',
                   'input_units',
                   'output_units',
+                  'izero',
                   'decimation_input_sample_rate',
+                  'leading_factor',
                   'sp_dir',
                   'sp_filename',
                  )
         
-    def create(self, validated_data):
-        stage = Stage.objects.create(parent=validated_data['channel_epoch']['id'], stage_name=validated_data['stage_name'])
-
-        return stage
+#    def create(self, validated_data):
+#        stage = Stage.objects.create(parent=validated_data['channel_epoch']['id'], stage_name=validated_data['stage_name'])
+#
+#        return stage
 
 class ChannelEpochSerializer(serializers.ModelSerializer):
     stage_list = StageSerializer(many=True, read_only=True)
