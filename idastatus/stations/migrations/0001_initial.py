@@ -41,8 +41,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('decimation_factor', models.BigIntegerField()),
-                ('data_file_name', models.CharField(blank=True, max_length=64, null=True)),
-                ('data_dir', models.CharField(blank=True, max_length=128, null=True)),
+                ('dfile', models.CharField(blank=True, max_length=64, null=True)),
+                ('dir', models.CharField(blank=True, max_length=128, null=True)),
                 ('stage_gain', models.DecimalField(blank=True, decimal_places=5, max_digits=17, null=True)),
                 ('input_units', models.CharField(blank=True, max_length=200, null=True)),
                 ('output_units', models.CharField(blank=True, max_length=200, null=True)),
