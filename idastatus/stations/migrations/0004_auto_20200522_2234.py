@@ -12,12 +12,12 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RenameField(
             model_name='stage',
-            old_name='data_dir',
+            old_name='dir',
             new_name='sp_dir',
         ),
         migrations.RenameField(
             model_name='stage',
-            old_name='data_file_name',
+            old_name='dfile',
             new_name='sp_filename',
         ),
         migrations.RemoveField(
@@ -36,12 +36,17 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='stage',
-            name='serial_number',
+            name='ssident',
             field=models.CharField(blank=True, help_text='Serial Number (or other identifier)', max_length=16, null=True),
         ),
         migrations.AddField(
             model_name='stage',
-            name='stage_ndx',
+            name='izero',
+            field=models.IntegerField(blank=True, help_text='index of FIR coeff. for 0th sample', null=True),
+        ),
+        migrations.AddField(
+            model_name='stage',
+            name='stageid',
             field=models.IntegerField(blank=True, help_text='Stage index for parent ChannelEpoch (cascade)', null=True),
         ),
     ]
