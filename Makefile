@@ -36,6 +36,9 @@ rmcontainers:		## remove all stopped containers
 rmimages:		## remove all images
 	docker image rm $(IMAGELIST)
 
+migrate:		## apply schema migrations to database
+	docker exec -it dockeridastatus_web_1 python manage.py migrate
+
 loadfixtures:		## load fixtures into database
 	cd $(TARGETDIR)
 	docker-compose --file $(DOCKERCOMPOSEFILE) exec web python manage.py loaddata stations/fixtures/initial_instype_data.json
