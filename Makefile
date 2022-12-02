@@ -1,6 +1,6 @@
 # Make different targets for 
 
-DOCKERCOMPOSEFILE = docker-compose.prod.yml
+DOCKERCOMPOSEFILE = docker-compose.aws.yml
 TARGETDIR = idastatus
 CONTAINERLIST = dockeridastatus_web_1 dockeridastatus_db_1 dockeridastatus_web_migrations_1 dockeridastatus_web_proxies_1
 IMAGELIST = dockeridastatus_web dockeridastatus_web_migrations
