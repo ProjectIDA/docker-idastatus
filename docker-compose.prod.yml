@@ -19,7 +19,7 @@ services:
       context: ./idastatus
 
     #command: ./wait-for db:5432 -- echo "doing runserver"
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn --certfile=/etc/ssl/private/idastatus-dev_ucsd_edu_chain.cer --keyfile=/etc/ssl/private/idastatus-dev_ucsd_edu.key idastatus.wsgi --bind 0.0.0.0:8000  --timeout 3000"    
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn --certfile=/etc/pki/tls/certs/idastatus-dev_ucsd_edu.cer --keyfile=/etc/pki/tls/private/idastatus-dev_ucsd_edu.key idastatus.wsgi --bind 0.0.0.0:8000  --timeout 3000"    
     depends_on:
       - db
 
@@ -27,8 +27,9 @@ services:
       - "8000"
     volumes:
       - ./idastatus:/ida/code/
-      - /etc/pki/tls/private/idastatus-dev_ucsd_edu.key:/etc/ssl/private/idastatus-dev_ucsd_edu.key:ro
-      - /etc/pki/tls/certs/idastatus-dev_ucsd_edu_chain.cer:/etc/ssl/private/idastatus-dev_ucsd_edu_chain.cer:ro
+      - /etc/pki/tls/private/idastatus-dev_ucsd_edu.key:/etc/pki/tls/private/idastatus-dev_ucsd_edu.key:ro
+      - /etc/pki/tls/certs/idastatus-dev_ucsd_edu_interm.cer:/etc/pki/tls/certs/idastatus-dev_ucsd_edu_interm.cer:ro
+      - /etc/pki/tls/certs/idastatus-dev_ucsd_edu.cer:/etc/pki/tls/certs/idastatus-dev_ucsd_edu.cer:ro
 
     links:
       - db
@@ -39,8 +40,9 @@ services:
     image: nginx
     volumes:
       - ./nginx/nginx_prod:/etc/nginx:ro
-      - /etc/pki/tls/private/idastatus-dev_ucsd_edu.key:/etc/ssl/private/idastatus-dev_ucsd_edu.key:ro
-      - /etc/pki/tls/certs/idastatus-dev_ucsd_edu_chain.cer:/etc/ssl/private/idastatus-dev_ucsd_edu_chain.cer:ro
+      - /etc/pki/tls/private/idastatus-dev_ucsd_edu.key:/etc/pki/tls/private/idastatus-dev_ucsd_edu.key:ro
+      - /etc/pki/tls/certs/idastatus-dev_ucsd_edu_interm.cer:/etc/pki/tls/certs/idastatus-dev_ucsd_edu_interm.cer:ro
+      - /etc/pki/tls/certs/idastatus-dev_ucsd_edu.cer:/etc/pki/tls/certs/idastatus-dev_ucsd_edu.cer:ro
     ports:
       - "8000:8000"
 
