@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:11.14
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports: 
+      - "5432"
+    environment:
+      - POSTGRES_DB=idastatus
+      - POSTGRES_USER=idadb
+      - POSTGRES_PASSWORD=CHANGE_THIS_BEFORE_RUNNING
+    restart: unless-stopped
+
+  web:
+    hostname: web
+    build: 
+      context: ./idastatus
+
+    #command: ./wait-for db:5432 -- echo "doing runserver"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn --certfile=/etc/pki/tls/certs/idastatus-dev_ucsd_edu.cer --keyfile=/etc/pki/tls/private/idastatus-dev_ucsd_edu.key idastatus.wsgi --bind 0.0.0.0:80  --timeout 3000"    
+    depends_on:
+      - db
+
+    expose:
+      - "80"
+    volumes:
+      - ./idastatus:/ida/code/
+
+    links:
+      - db
+    restart: unless-stopped
+
+# this service provides the proxy to https connection
+  web_proxies:
+    image: nginx
+    volumes:
+      - ./nginx/nginx_prod:/etc/nginx:ro
+    ports:
+      - "80:80"
+
+    depends_on:
+      - "web"
+    restart: unless-stopped
+
+# this service will use same image, and once the migration is done it will be stopped
+  web_migrations:
+    build: 
+      context: ./idastatus
+
+    command: ["./wait-for-postgres.sh", "db", "idadb", "CHANGE_THIS_BEFORE_RUNNING", "python manage.py migrate"]
+    depends_on:
+      - db
+
+volumes:
+  db-data:
+    driver: local
