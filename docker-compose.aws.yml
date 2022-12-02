@@ -36,7 +36,7 @@ services:
   web_proxies:
     image: nginx
     volumes:
-      - ./nginx/nginx_prod:/etc/nginx:ro
+      - ./nginx/nginx_aws:/etc/nginx:ro
     ports:
       - "80:80"
 
