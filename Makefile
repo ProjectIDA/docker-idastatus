@@ -15,7 +15,7 @@ ls:			## Show list of make targets
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
 lscontainers:		## Show list of idastatus containers
-	docker container ls -f name=dockeridastatus
+	docker container ls -f name=docker.*idastatus
 
 build:			## build images and containers
 	docker-compose --file $(DOCKERCOMPOSEFILE) build $(SERVICELIST)
