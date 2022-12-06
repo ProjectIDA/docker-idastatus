@@ -19,7 +19,7 @@ services:
       context: ./idastatus
 
     #command: ./wait-for db:5432 -- echo "doing runserver"
-    command: bash -c "ud-local.sh"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn idastatus.wsgi --bind 0.0.0.0:80  --timeout 3000"
     depends_on:
       - db
 
