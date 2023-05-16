@@ -95,7 +95,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'idastatus',
         'USER': 'idadb',
-        'PASSWORD': 'CHANGE_THIS_BEFORE_RUNNING',
+        'PASSWORD': '$POSTGRES_USER_PASSWORD',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -106,7 +106,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'idastatus',
         'USER': 'idadb',
-        'PASSWORD': 'CHANGE_THIS_BEFORE_RUNNING',
+        'PASSWORD': '$POSTGRES_USER_PASSWORD',
         'HOST': 'db',
         'PORT': '5432',
     }
