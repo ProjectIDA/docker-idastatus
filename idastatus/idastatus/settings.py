@@ -106,7 +106,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'idastatus',
         'USER': 'idadb',
-        'PASSWORD': os.environ.get('POSTGRES_USER_PASSWORD')
+        'PASSWORD': os.environ.get('POSTGRES_USER_PASSWORD'),
         'HOST': 'db',
         'PORT': '5432',
     }
