@@ -39,7 +39,6 @@ services:
 
   # this service provides the proxy to https connection
   web_proxies:
-    environment:
     image: nginx
     volumes:
       - ./nginx/nginx_aws:/etc/nginx:ro
@@ -53,7 +52,6 @@ services:
   # this service will use same image, and once the migration is done
   # it will be stopped
   web_migrations:
-    environment:
     build:
       context: ./idastatus
 
