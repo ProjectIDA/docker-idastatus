@@ -1,3 +1,4 @@
+---
 version: '3'
 
 services:
@@ -5,9 +6,9 @@ services:
     image: postgres:15
     volumes:
       - db-data:/var/lib/postgresql/data
-    ports: 
+    ports:
       - "5432"
-     environment:
+    environment:
       - POSTGRES_DB: 'idastatus'
       - POSTGRES_USER: 'idadb'
       - POSTGRES_PASSWORD: '${POSTGRES_USER_PASSWORD}'
@@ -16,11 +17,14 @@ services:
   web:
     hostname: web
     environment:
-    build: 
+    build:
       context: ./idastatus
 
-    #command: ./wait-for db:5432 -- echo "doing runserver"
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn idastatus.wsgi --bind 0.0.0.0:80  --timeout 3000"
+    # command: ./wait-for db:5432 -- echo "doing runserver"
+    command: >
+        bash -c "python manage.py makemigrations &&
+        python manage.py migrate &&
+        gunicorn idastatus.wsgi --bind 0.0.0.0:80  --timeout 3000"
     depends_on:
       - db
 
@@ -33,7 +37,7 @@ services:
       - db
     restart: unless-stopped
 
-# this service provides the proxy to https connection
+  # this service provides the proxy to https connection
   web_proxies:
     environment:
     image: nginx
@@ -46,13 +50,16 @@ services:
       - "web"
     restart: unless-stopped
 
-# this service will use same image, and once the migration is done it will be stopped
+  # this service will use same image, and once the migration is done
+  # it will be stopped
   web_migrations:
     environment:
-    build: 
+    build:
       context: ./idastatus
 
-    command: ["./wait-for-postgres.sh", "db", "idadb", "${POSTGRES_USER_PASSWORD}", "python manage.py migrate"]
+    command: >
+        ["./wait-for-postgres.sh", "db", "idadb", "${POSTGRES_USER_PASSWORD}",
+        "python manage.py migrate"]
     depends_on:
       - db
 
