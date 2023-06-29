@@ -56,7 +56,7 @@ services:
     build: 
       context: ./idastatus
 
-    command: ["./wait-for-postgres.sh", "db", "idadb", ${POSTGRES_USER_PASSWORD}, "python manage.py migrate"]
+    command: ["./wait-for-postgres.sh", "db", "idadb", "${POSTGRES_USER_PASSWORD}", "python manage.py migrate"]
     depends_on:
       - db
 
