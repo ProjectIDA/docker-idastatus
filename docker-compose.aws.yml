@@ -3,15 +3,17 @@ version: '3'
 
 services:
   db:
-    image: postgres:15
+    build:
+      context: ./db
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
       - "5432"
-    environment:
-        POSTGRES_DB: idastatus
-        POSTGRES_USER: idadb
-        POSTGRES_PASSWORD: password
+    # environment:
+    #     POSTGRES_IDA_DB: idastatus
+    #     POSTGRES_IDA_USER: idadb
+    #     POSTGRES_IDA_PASSWORD: idadb
+    #     POSTGRES_PASSWORD: password
     restart: unless-stopped
 
   web:
