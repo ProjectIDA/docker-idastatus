@@ -9,11 +9,11 @@ services:
       - db-data:/var/lib/postgresql/data
     ports:
       - "5432"
-    # environment:
-    #     POSTGRES_IDA_DB: idastatus
-    #     POSTGRES_IDA_USER: idadb
-    #     POSTGRES_IDA_PASSWORD: idadb
-    #     POSTGRES_PASSWORD: password
+    environment:
+        POSTGRES_IDA_DB: idastatus
+        POSTGRES_IDA_USER: idadb
+        POSTGRES_IDA_PASSWORD: idadb
+        POSTGRES_PASSWORD: 
     restart: unless-stopped
 
   web:
