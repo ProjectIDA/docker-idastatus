@@ -22,4 +22,5 @@ RUN pip install --trusted-host pypy.org --trusted-host files.pythonhosted.org -r
 
 COPY . /ida/code/
 
-COPY init.sql /docker-entrypoint-initdb.d/
+# removed, unecessary since init.sql has been removed
+#COPY init.sql /docker-entrypoint-initdb.d/
