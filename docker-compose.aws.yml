@@ -12,8 +12,8 @@ services:
     environment:
         POSTGRES_IDA_DB: idastatus
         POSTGRES_IDA_USER: idadb
-        POSTGRES_IDA_PASSWORD: idadb
-        POSTGRES_PASSWORD: 
+        POSTGRES_IDA_PASSWORD:
+            POSTGRES_ADMIH_PASSWORD: 
     restart: unless-stopped
 
   web:
