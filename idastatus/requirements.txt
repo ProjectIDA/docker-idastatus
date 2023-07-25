@@ -3,7 +3,7 @@ binaryornot==0.4.4
 certifi==2019.3.9
 chardet==3.0.4
 Click==7.0
-Django==2.2.*
+Django==3.2.20*
 future==0.17.1
 gunicorn==20.0.4
 idna==2.8
