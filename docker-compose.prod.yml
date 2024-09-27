@@ -10,7 +10,7 @@ services:
     environment:
       - POSTGRES_DB=idastatus
       - POSTGRES_USER=idadb
-      - POSTGRES_PASSWORD=CHANGE_THIS_BEFORE_RUNNING
+      - POSTGRES_PASSWORD=$POSTGRES_USER_PASSWORD
     restart: unless-stopped
 
   web:
@@ -55,7 +55,7 @@ services:
     build: 
       context: ./idastatus
 
-    command: ["./wait-for-postgres.sh", "db", "idadb", "CHANGE_THIS_BEFORE_RUNNING", "python manage.py migrate"]
+    command: ["./wait-for-postgres.sh", "db", "idadb", $POSTGRES_USER_PASSWORD, "python manage.py migrate"]
     depends_on:
       - db
 
